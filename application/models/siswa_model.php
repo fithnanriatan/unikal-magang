@@ -1,6 +1,7 @@
 <?php
 
-class siswa_model extends CI_Model{
+class siswa_model extends CI_Model
+{
 
     //*--- Start of Table Serverside ---*//
     var $table = "siswa ss";
@@ -17,28 +18,26 @@ class siswa_model extends CI_Model{
         $this->db->from($this->table);
         $this->db->join('sekolah s', 'ss.id_sekolah = s.id_sekolah');
         $this->db->join('pembimbing_unikal pu', 'ss.id_pembimbing_unikal = pu.id_pembimbing_unikal');
-        if ( !empty($sekolah)) {
+        if (!empty($sekolah)) {
             $this->db->where('ss.id_sekolah', $sekolah);
         }
-        if ( !empty($pembimbing)) {
+        if (!empty($pembimbing)) {
             $this->db->where('pu.id_pembimbing_unikal', $pembimbing);
         }
-        if ( !empty($bln_awal) && empty($bln_akhir)) {
-            $this->db->where('tgl_masuk >=', $bln_awal.'-00');
-            $this->db->or_where('tgl_keluar >=', $bln_awal.'-00');
+        if (!empty($bln_awal) && empty($bln_akhir)) {
+            $this->db->where('tgl_masuk >=', $bln_awal . '-00');
+            $this->db->or_where('tgl_keluar >=', $bln_awal . '-00');
         }
-        if ( !empty($bln_akhir) && empty($bln_awal)) {
-            $this->db->where('tgl_masuk <=', $bln_akhir.'-32');
-            $this->db->or_where('tgl_keluar <=', $bln_akhir.'-32');
+        if (!empty($bln_akhir) && empty($bln_awal)) {
+            $this->db->where('tgl_masuk <=', $bln_akhir . '-32');
+            $this->db->or_where('tgl_keluar <=', $bln_akhir . '-32');
         }
-        if ( !empty($bln_akhir) && !empty($bln_awal)) {
-            if($this->db->where('tgl_masuk >=', $bln_awal.'-00')){
+        if (!empty($bln_akhir) && !empty($bln_awal)) {
 
-            }
-            $this->db->where('tgl_keluar >=', $bln_awal.'-00');
-            $this->db->where('tgl_keluar <=', $bln_akhir.'-32');
-            $this->db->or_where('tgl_masuk >=', $bln_awal.'-00');
-            $this->db->or_where('tgl_masuk <=', $bln_akhir.'-32');
+            $this->db->where('tgl_keluar <=', $bln_akhir . '-32', true);
+            $this->db->where('tgl_masuk >=', $bln_awal . '-00');
+            $this->db->where_not_in('tgl_keluar <=', $bln_awal . '-00');
+            $this->db->where_not_in('tgl_masuk >=', $bln_akhir . '-32');
         }
 
         if (isset($_POST['search']['value'])) {
@@ -109,17 +108,17 @@ class siswa_model extends CI_Model{
         $this->db->join('pembimbing_sekolah ps', 'ss.id_pembimbing_sekolah = ps.id_pembimbing_sekolah');
         $this->db->join('pembimbing_unikal pu', 'ss.id_pembimbing_unikal = pu.id_pembimbing_unikal');
 
-        if ( !empty($flt_sekolah)) {
+        if (!empty($flt_sekolah)) {
             $this->db->where('ss.id_sekolah', $flt_sekolah);
         }
-        if ( !empty($flt_pembimbing)) {
+        if (!empty($flt_pembimbing)) {
             $this->db->where('pu.id_pembimbing_unikal', $flt_pembimbing);
         }
-        if ( !empty($flt_bln_awal)) {
-            $this->db->where('tgl_masuk >=', $flt_bln_awal.'-00 OR tgl_keluar >=', $flt_bln_awal.'-00');
+        if (!empty($flt_bln_awal)) {
+            $this->db->where('tgl_masuk >=', $flt_bln_awal . '-00 OR tgl_keluar >=', $flt_bln_awal . '-00');
         }
-        if ( !empty($flt_bln_akhir)) {
-            $this->db->where('tgl_masuk <=', $flt_bln_akhir.'-32 OR tgl_keluar <=', $flt_bln_akhir.'-32');
+        if (!empty($flt_bln_akhir)) {
+            $this->db->where('tgl_masuk <=', $flt_bln_akhir . '-32 OR tgl_keluar <=', $flt_bln_akhir . '-32');
         }
 
         return $this->db->get('siswa ss')->result_array();
