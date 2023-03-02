@@ -33,11 +33,14 @@ class siswa_model extends CI_Model
             $this->db->or_where('tgl_keluar <=', $bln_akhir . '-32');
         }
         if (!empty($bln_akhir) && !empty($bln_awal)) {
-
-            $this->db->where('tgl_keluar <=', $bln_akhir . '-32', true);
             $this->db->where('tgl_masuk >=', $bln_awal . '-00');
-            $this->db->where_not_in('tgl_keluar <=', $bln_awal . '-00');
-            $this->db->where_not_in('tgl_masuk >=', $bln_akhir . '-32');
+            $this->db->where('tgl_masuk <=', $bln_akhir . '-32');
+            
+            $this->db->or_where('tgl_keluar >=', $bln_awal . '-00');
+            $this->db->where('tgl_keluar <=', $bln_akhir . '-32');
+            
+            $this->db->or_where('tgl_masuk <=', $bln_awal . '-00');
+            $this->db->where('tgl_keluar >=', $bln_akhir . '-32');
         }
 
         if (isset($_POST['search']['value'])) {

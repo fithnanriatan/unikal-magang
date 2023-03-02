@@ -186,6 +186,24 @@ class Siswa extends CI_Controller
         }
     }
 
+    public function ajax_asalsekolah()
+    {
+        $asalsekolah = $this->input->post('id_sekolah');
+        $pembimbing = $this->db->get_where('pembimbing_sekolah', ['id_sekolah' => $asalsekolah]);
+        $jml = $pembimbing->num_rows();
+
+        if ($jml > 0){
+            foreach ($pembimbing->result_array() as $ps ) {
+                ?>
+                <option value="<?= $ps['id_pembimbing_sekolah']; ?>"><?= $ps['nama_pembimbing']; ?></option>
+                <?php
+            }
+        } else {
+            echo "<option value='' selected>[ pembimbing sekolah belum terdaftar ]</option>";
+        }
+
+    }
+
     public function ubahData($id)
     {
         $data = [

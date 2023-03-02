@@ -36,10 +36,10 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">unikal Magang</h6>
-                <a class="collapse-item" href="<?= base_url('data/siswa'); ?>">Master Data Siswa</a>
                 <a class="collapse-item" href="<?= base_url('data/sekolah'); ?>">Master Data Sekolah</a>
                 <a class="collapse-item" href="<?= base_url('data/pembimbingsekolah'); ?>">Pembimbing Sekolah</a>
                 <a class="collapse-item" href="<?= base_url('data/pembimbingunikal'); ?>">Pembimbing Unikal</a>
+                <a class="collapse-item" href="<?= base_url('data/siswa'); ?>">Master Data Siswa</a>
             </div>
         </div>
     </li>

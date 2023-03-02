@@ -21,10 +21,23 @@ class Dashboard extends CI_Controller
 
         $data = [
             "title" => "Dashboard",
-            "user"  => $this->db->get_where('user', ['nama_user' => $user])->row_array()
+            "user"  => $this->db->get_where('user', ['nama_user' => $user])->row_array(),
+            "data"  => $this->_jml_data()
         ];
 
         $this->_index($data);
+    }
+
+    private function _jml_data()
+    {
+        $data = [
+            'sekolah'       => $this->db->get('sekolah')->num_rows(),
+            'pem_sekolah'   => $this->db->get('pembimbing_sekolah')->num_rows(),
+            'pem_unikal'    => $this->db->get('pembimbing_unikal')->num_rows(),
+            'siswa'         => $this->db->get('siswa')->num_rows()
+        ];
+
+        return $data;
     }
 
     public function alert($flash, $message, $target)

@@ -61,14 +61,14 @@
                 <?= form_error('alamat', '<small class="form-text text-danger ml-1">', '</small>'); ?>
             </div>
             <div class="form-group d-flex justify-content-between">
-                <div class="w-50 mr-2">
+                <div class="mr-2">
                     <label for="tgl-masuk">
                         Tanggal Masuk
                     </label>
                     <input name="tgl-masuk" id="tgl-masuk" type="date" class="form-control bg-white" value="<?= set_value('tgl-masuk'); ?>">
                     <?= form_error('tgl-masuk', '<small class="form-text text-danger ml-1">', '</small>'); ?>
                 </div>
-                <div class="w-50 ml-2">
+                <div class="ml-2">
                     <label for="tgl-keluar">
                         Tanggal Keluar
                     </label>
@@ -82,20 +82,14 @@
                     Asal Sekolah
                 </label>
                 <select class="form-control" name="asalsekolah" id="asalsekolah">
-                    <?php if (set_value('asalsekolah')) : ?>
-                        <?php foreach ($sekolah as $s) : ?>
-                            <?php if (set_value('asalsekolah') == $s['id_sekolah']) : ?>
-                                <option value="<?= $s['id_sekolah']; ?>" selected><?= $s['nama_sekolah'] ?></option>
-                            <?php else : ?>
-                                <option value="<?= $s['id_sekolah']; ?>"><?= $s['nama_sekolah']; ?></option>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    <?php else : ?>
-                        <option value="" selected>-- Pilih Sekolah --</option>
-                        <?php foreach ($sekolah as $s) : ?>
+                    <option value="">-- Pilih Sekolah --</option>
+                    <?php foreach ($sekolah as $s) : ?>
+                        <?php if (set_value('asalsekolah') == $s['id_sekolah']) : ?>
+                            <option value="<?= $s['id_sekolah']; ?>" selected><?= $s['nama_sekolah'] ?></option>
+                        <?php else : ?>
                             <option value="<?= $s['id_sekolah']; ?>"><?= $s['nama_sekolah']; ?></option>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 </select>
                 <?= form_error('asalsekolah', '<small class="form-text text-danger ml-1">', '</small>'); ?>
             </div>
@@ -103,6 +97,7 @@
                 <label for="pem-sekolah">
                     Pembimbing Sekolah
                 </label>
+                <input type="hidden" name="ps" id="ps" value="kosong">
                 <select class="form-control" name="pem-sekolah" id="pem-sekolah">
                     <?php if (set_value('pem-sekolah')) : ?>
                         <?php foreach ($pem_sekolah as $ps) : ?>
@@ -113,10 +108,7 @@
                             <?php endif; ?>
                         <?php endforeach; ?>
                     <?php else : ?>
-                        <option value="" selected>-- Pilih Pembimbing Sekolah --</option>
-                        <?php foreach ($pem_sekolah as $ps) : ?>
-                            <option value="<?= $ps['id_pembimbing_sekolah']; ?>"><?= $ps['nama_pembimbing']; ?></option>
-                        <?php endforeach; ?>
+                        <option value="">-- pilih asal sekolah dahulu --</option>
                     <?php endif; ?>
                 </select>
                 <?= form_error('pem-sekolah', '<small class="form-text text-danger ml-1">', '</small>'); ?>
@@ -126,20 +118,14 @@
                     Pembimbing Unikal
                 </label>
                 <select class="form-control" name="pem-unikal" id="pem-unikal">
-                    <?php if (set_value('pem-unikal')) : ?>
-                        <?php foreach ($pem_unikal as $pu) : ?>
-                            <?php if (set_value('pem-unikal') == $pu['id_pembimbing_unikal']) : ?>
-                                <option value="<?= $pu['id_pembimbing_unikal']; ?>" selected><?= $pu['nama_pembimbing'] ?></option>
-                            <?php else : ?>
-                                <option value="<?= $pu['id_pembimbing_unikal']; ?>"><?= $pu['nama_pembimbing']; ?></option>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    <?php else : ?>
-                        <option value="" selected>-- Pilih Pembimbing Unikal --</option>
-                        <?php foreach ($pem_unikal as $pu) : ?>
+                    <option value="">-- Pilih Pembimbing Unikal --</option>
+                    <?php foreach ($pem_unikal as $pu) : ?>
+                        <?php if (set_value('pem-unikal') == $pu['id_pembimbing_unikal']) : ?>
+                            <option value="<?= $pu['id_pembimbing_unikal']; ?>" selected><?= $pu['nama_pembimbing'] ?></option>
+                        <?php else : ?>
                             <option value="<?= $pu['id_pembimbing_unikal']; ?>"><?= $pu['nama_pembimbing']; ?></option>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 </select>
                 <?= form_error('pem-unikal', '<small class="form-text text-danger ml-1">', '</small>'); ?>
             </div>

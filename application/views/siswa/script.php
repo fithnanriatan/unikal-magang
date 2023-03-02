@@ -1,6 +1,8 @@
 <script>
     $(function() {
 
+        const base_url = $('#page-top #base-url').data('url')
+
         // Default Alert
         const Alert = Swal.mixin({
             toast: true,
@@ -24,9 +26,9 @@
                 "url": "<?= base_url('data/siswa/getData'); ?>",
                 "type": "POST",
                 "data": function(data) {
-                    data.bln_awal   = $('#bln_awal').val()
-                    data.bln_akhir  = $('#bln_akhir').val()
-                    data.sekolah    = $('#flt_sekolah').val()
+                    data.bln_awal = $('#bln_awal').val()
+                    data.bln_akhir = $('#bln_akhir').val()
+                    data.sekolah = $('#flt_sekolah').val()
                     data.pembimbing = $('#flt_pembimbing').val()
                 }
             },
@@ -47,13 +49,26 @@
         // Filter Bulan Masuk
         $('#bln_awal').on('change', function() {
             table.ajax.reload()
-            console.log($('#bln_awal').val());
         })
         // Filter Bulan Masuk
         $('#bln_akhir').on('change', function() {
             table.ajax.reload()
-            console.log($('#bln_akhir').val());
         })
+
+
+        //---->||  Input Pembimbing Sekolah  ||<----//
+        $('#asalsekolah').change(function() {
+            var id_sekolah = $(this).val();
+            $.ajax({
+                type: 'POST',
+                url: base_url + 'data/siswa/ajax_asalsekolah',
+                data: {id_sekolah : id_sekolah},
+                success: function(response) {
+                    $('#pem-sekolah').html(response);
+                }
+            });
+        });
+
 
         //---->||  Input File Foto  ||<----//
         $(".custom-file-input").on("change", function() {
