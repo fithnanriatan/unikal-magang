@@ -26,10 +26,11 @@
                 "url": "<?= base_url('data/siswa/getData'); ?>",
                 "type": "POST",
                 "data": function(data) {
-                    data.bln_awal = $('#bln_awal').val()
-                    data.bln_akhir = $('#bln_akhir').val()
-                    data.sekolah = $('#flt_sekolah').val()
+                    data.bln_awal   = $('#bln_awal').val()
+                    data.bln_akhir  = $('#bln_akhir').val()
+                    data.sekolah    = $('#flt_sekolah').val()
                     data.pembimbing = $('#flt_pembimbing').val()
+                    data.status     = $('#flt_status').val()
                 }
             },
             "columnDefs": [{
@@ -52,6 +53,10 @@
         })
         // Filter Bulan Masuk
         $('#bln_akhir').on('change', function() {
+            table.ajax.reload()
+        })
+        // Filter Status Siswa
+        $('flt_status').on('change', function() {
             table.ajax.reload()
         })
 

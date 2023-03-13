@@ -31,7 +31,7 @@
                     </label>
                     <input name="email" id="email" type="text" class="form-control bg-white" value="<?= set_value('email'); ?>">
                     <?= form_error('email', '<small class="form-text text-danger ml-1">', '</small>'); ?>
-                </div> 
+                </div>
                 <div class="form-group">
                     <label for="alamat">
                         Alamat
@@ -40,7 +40,7 @@
                     <?= form_error('alamat', '<small class="form-text text-danger ml-1">', '</small>'); ?>
                 </div>
                 <div class="mt-4">
-                    <a href="<?= base_url('data/pembimbingunikal'); ?>" class="btn btn-danger">Batal</a>
+                    <a href="<?= base_url('data/pembimbing_unikal'); ?>" class="btn btn-danger">Batal</a>
                     <input type="submit" class="btn btn-primary">
                 </div>
             </form>

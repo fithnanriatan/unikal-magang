@@ -1,6 +1,6 @@
 <?php
 
-class pembimbingUnikal extends CI_Controller
+class Pembimbing_unikal extends CI_Controller
 {
     var $title = "Pembimbing Unikal";
 
@@ -44,8 +44,8 @@ class pembimbingUnikal extends CI_Controller
             $alamat = '<span class="d-inline-block text-truncate" style="max-width: 170px;">' . $r['alamat'] . '</span>';
             $email = '<span class="d-inline-block text-truncate" style="max-width: 150px;">' . $r['email'] . '</span>';
             $aksi = '<div class="div d-flex">
-                            <a href="' . base_url("data/pembimbingunikal/ubahdata/" . $r["id_pembimbing_unikal"]) . '" class="btn btn-outline-primary btn-sm"><i class="far fa-edit"></i></a>
-                            <a href="' . base_url("data/pembimbingunikal/hapusdata/") . '" data-id="' . $r["id_pembimbing_unikal"] . '" class="btn btn-outline-danger btn-sm ml-1 btn-delete"><i class="far fa-trash-alt"></i></a>
+                            <a href="' . base_url("data/pembimbing_unikal/ubahdata/" . $r["id_pembimbing_unikal"]) . '" class="btn btn-outline-primary btn-sm"><i class="far fa-edit"></i></a>
+                            <a href="' . base_url("data/pembimbing_unikal/hapusdata/") . '" data-id="' . $r["id_pembimbing_unikal"] . '" class="btn btn-outline-danger btn-sm ml-1 btn-delete"><i class="far fa-trash-alt"></i></a>
                     </div>';
 
             $row = [++$no, $r['nama_pembimbing'], $alamat, $r['no_telp'], $email, $aksi];
@@ -93,7 +93,7 @@ class pembimbingUnikal extends CI_Controller
         // } else {
         //     $this->mpu->insert($input);
         //     $this->session->set_flashdata('main', 'data Pembimbing Unikal berhasil ditambahkan!');
-        //     redirect('data/pembimbingunikal');
+        //     redirect('data/pembimbing_unikal');
         // }
     }
 
@@ -117,7 +117,7 @@ class pembimbingUnikal extends CI_Controller
         if ($this->form_validation->run() == true) {
             $this->mpu->update($input, $id);
             $this->session->set_flashdata('main', 'data Pembimbing Unikal berhasil diubah');
-            redirect('data/pembimbingunikal');
+            redirect('data/pembimbing_unikal');
         } else {
             $this->_index($data, 'ubah_data');
         }

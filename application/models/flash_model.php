@@ -1,6 +1,6 @@
 <?php
 
-class flash_model extends CI_Model {
+class Flash_model extends CI_Model {
 
     public function flash_login( $type, $message )
     {

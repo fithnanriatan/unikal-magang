@@ -42,7 +42,7 @@
                                 <img src="<?= base_url('assets/img/unikal.png'); ?>" alt="unika.png" class="img-fluid">
                             </div>
                             <div class="col-lg-6">
-                                <div class="p-5 my-4">
+                                <div class="p-4 my-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
@@ -64,10 +64,10 @@
                                         </button>
                                     </form>
                                     <div class="text-center mt-3">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        <a class="small" href="#">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
+                                        <a class="small" href="#">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>

@@ -57,7 +57,7 @@ class Siswa extends CI_Controller
                 $color = "primary";
             } else {
                 $lable = "Undifine";
-                $color = "danger";
+                $color = "dark";
             }
             $status = '<span class="badge badge-' . $color . '">' . $lable . '</span>';
 
@@ -192,16 +192,13 @@ class Siswa extends CI_Controller
         $pembimbing = $this->db->get_where('pembimbing_sekolah', ['id_sekolah' => $asalsekolah]);
         $jml = $pembimbing->num_rows();
 
-        if ($jml > 0){
-            foreach ($pembimbing->result_array() as $ps ) {
-                ?>
-                <option value="<?= $ps['id_pembimbing_sekolah']; ?>"><?= $ps['nama_pembimbing']; ?></option>
-                <?php
+        if ($jml > 0) {
+            foreach ($pembimbing->result_array() as $ps) {
+                echo "<option value='" . $ps['id_pembimbing_sekolah'] . "'>" . $ps['nama_pembimbing'] . "</option>";
             }
         } else {
             echo "<option value='' selected>[ pembimbing sekolah belum terdaftar ]</option>";
         }
-
     }
 
     public function ubahData($id)
@@ -306,7 +303,7 @@ class Siswa extends CI_Controller
         $flt_bln_akhir  = $this->input->post('bln_akhir'); // 2023-03
         $flt_sekolah    = $this->input->post('flt_sekolah'); // 64
         $flt_pembimbing = $this->input->post('flt_pembimbing'); // 7
-        
+
         $bln_awal = 'dari ' . $flt_bln_awal;
         $bln_akhir = 'sampai ' . $flt_bln_akhir;
 

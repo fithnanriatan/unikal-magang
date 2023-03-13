@@ -60,7 +60,7 @@
                     <?= form_error('asalsekolah', '<small class="form-text text-danger ml-1">', '</small>'); ?>
                 </div>
                 <div class="mt-4">
-                    <a href="<?= base_url('data/pembimbingsekolah'); ?>" class="btn btn-danger">Batal</a>
+                    <a href="<?= base_url('data/pembimbing_sekolah'); ?>" class="btn btn-danger">Batal</a>
                     <button type="submit" class="btn btn-primary">Tambahkan</button>
                 </div>
             </form>

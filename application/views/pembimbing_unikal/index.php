@@ -32,39 +32,39 @@
 
 <!-- Model Data Pembimbing Unikal -->
 <div class="modal fade" id="modal-pembimbing-unikal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="modalLabel">Action Data Pembimbing Unikal</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form method="post" id="form-pembimbing-unikal" action="javascript:void(0)" data-url="<?= base_url('data/pembimbingunikal/tambahdata'); ?>">
+			<form method="post" id="form-pembimbing-unikal" action="javascript:void(0)" data-url="<?= base_url('data/pembimbing_unikal/tambahdata'); ?>">
 				<input type="hidden" name="id" id="id">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="nama" class="col-form-label">Nama Pembimbing:</label>
-                        <input type="text" id="nama" name="nama" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="telp" class="col-form-label">No Telephone:</label>
-                        <input type="text" id="telp" name="telp" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="col-form-label">E-Mail:</label>
-                        <input type="text" id="email" name="email" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="alamat" class="col-form-label">Alamat:</label>
-                        <textarea type="text" id="alamat" name="alamat" class="form-control" rows="3"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                    <button type="submit" id="aksi" name="aksi" class="btn btn-primary">Action</button>
-                </div>
-            </form>
-        </div>
-    </div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="nama" class="col-form-label">Nama Pembimbing:</label>
+						<input type="text" id="nama" name="nama" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="telp" class="col-form-label">No Telephone:</label>
+						<input type="text" id="telp" name="telp" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="email" class="col-form-label">E-Mail:</label>
+						<input type="text" id="email" name="email" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="alamat" class="col-form-label">Alamat:</label>
+						<textarea type="text" id="alamat" name="alamat" class="form-control" rows="3"></textarea>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					<button type="submit" id="aksi" name="aksi" class="btn btn-primary">Action</button>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>

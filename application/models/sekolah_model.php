@@ -1,6 +1,6 @@
 <?php
 
-class sekolah_model extends CI_Model
+class Sekolah_model extends CI_Model
 {
     //*--- Start of Table Serverside ---*//
     var $table = "sekolah";

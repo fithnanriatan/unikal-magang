@@ -1,7 +1,7 @@
 <div class="container min-vh-100">
 	<div class="d-flex justify-content-between">
 		<div>
-			<a href="<?= base_url('data/pembimbingsekolah/tambahdata'); ?>" class="btn btn-primary btn-sm mb-3">
+			<a href="<?= base_url('data/pembimbing_sekolah/tambahdata'); ?>" class="btn btn-primary btn-sm mb-3">
 			+ Tambah Pembimbing</a>
 		</div>
 	</div>

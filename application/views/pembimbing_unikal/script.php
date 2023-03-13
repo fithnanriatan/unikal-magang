@@ -2,7 +2,7 @@
     $(function() {
 
         const base_url = $('#page-top #base-url').data('url')
-        const urlpemuk = base_url + 'data/pembimbingunikal/'
+        const urlpemuk = base_url + 'data/pembimbing_unikal/'
 
         // Default Alert
         const Toast = Swal.mixin({
@@ -24,7 +24,7 @@
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?= base_url('data/pembimbingunikal/getData'); ?>",
+                "url": "<?= base_url('data/pembimbing_unikal/getData'); ?>",
                 "type": "POST",
             },
             "columnDefs": [{

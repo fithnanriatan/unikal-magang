@@ -13,8 +13,8 @@
             </button>
 
             <!-- Page Title -->
-            <div>
-                <h4 class="mt-1 ml-2">&raquo;<?= $title; ?></h4>
+            <div class="mt-1 ml-2 " style="max-width: 70%;">
+                <h4 class="text-truncate overflow-hidden"><?= $title; ?></h4>
             </div>
 
             <!-- Topbar Navbar -->

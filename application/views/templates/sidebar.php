@@ -24,31 +24,35 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        unikal magang
+        master
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-folder-open"></i>
-            <span>Master Data</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">unikal Magang</h6>
-                <a class="collapse-item" href="<?= base_url('data/sekolah'); ?>">Master Data Sekolah</a>
-                <a class="collapse-item" href="<?= base_url('data/pembimbingsekolah'); ?>">Pembimbing Sekolah</a>
-                <a class="collapse-item" href="<?= base_url('data/pembimbingunikal'); ?>">Pembimbing Unikal</a>
-                <a class="collapse-item" href="<?= base_url('data/siswa'); ?>">Master Data Siswa</a>
-            </div>
-        </div>
+        <a class="nav-link" href="<?= base_url('data/sekolah'); ?>">
+            <i class="fas fa-fw fa-school"></i>
+            <span>Sekolah</span></a>
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-file-alt"></i>
-            <span>Laporan</span></a>
+        <a class="nav-link" href="<?= base_url('data/pembimbing_sekolah'); ?>">
+            <i class="fas fa-fw fa-user-tag"></i>
+            <span>Pembimbing Sekolah</span></a>
+    </li>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link" href="<?= base_url('data/pembimbing_unikal'); ?>">
+            <i class="fas fa-fw fa-user-tie"></i>
+            <span>Pembimbing Unikal</span></a>
+    </li>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link" href="<?= base_url('data/siswa'); ?>">
+            <i class="fas fa-fw fa-user-graduate"></i>
+            <span>Siswa</span></a>
     </li>
 
     <!-- Divider -->

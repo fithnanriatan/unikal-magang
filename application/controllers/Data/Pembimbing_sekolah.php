@@ -1,6 +1,6 @@
 <?php
 
-class PembimbingSekolah extends CI_Controller
+class Pembimbing_sekolah extends CI_Controller
 {
     var $title = "Pembimbing Sekolah";
 
@@ -10,7 +10,7 @@ class PembimbingSekolah extends CI_Controller
         if (!$this->session->userdata('username')) {
             redirect();
         }
-        $this->load->model('pembimbingSekolah_model', 'mps');
+        $this->load->model('PembimbingSekolah_model', 'mps');
     }
 
     private function _index($data, $body)
@@ -44,8 +44,8 @@ class PembimbingSekolah extends CI_Controller
             $asal = '<span class="d-inline-block text-truncate" style="max-width: 240px;">' . $r['nama_sekolah'] . '</span>';
             $email = '<span class="d-inline-block text-truncate" style="max-width: 150px;">' . $r['email'] . '</span>';
             $aksi = '<div class="div d-flex">
-                        <a href="' . base_url("data/pembimbingsekolah/ubahdata/" . $r["id_pembimbing_sekolah"]) . '" class="btn btn-outline-primary btn-sm"><i class="far fa-edit"></i></a>
-                        <a href="' . base_url("data/pembimbingsekolah/hapusdata/") . '" data-id="' . $r["id_pembimbing_sekolah"] . '" class="btn btn-outline-danger btn-sm ml-1 btn-delete"><i class="far fa-trash-alt"></i></a>
+                        <a href="' . base_url("data/pembimbing_sekolah/ubahdata/" . $r["id_pembimbing_sekolah"]) . '" class="btn btn-outline-primary btn-sm"><i class="far fa-edit"></i></a>
+                        <a href="' . base_url("data/pembimbing_sekolah/hapusdata/") . '" data-id="' . $r["id_pembimbing_sekolah"] . '" class="btn btn-outline-danger btn-sm ml-1 btn-delete"><i class="far fa-trash-alt"></i></a>
                     </div>';
 
             $row = [++$no, $r['nama_pembimbing'], $alamat, $asal, $r['no_telp'], $email, $aksi];
@@ -87,7 +87,7 @@ class PembimbingSekolah extends CI_Controller
         } else {
             $this->mps->insert($input);
             $this->session->set_flashdata('main', 'data Pembimbing Sekolah berhasil ditambahkan!');
-            redirect('data/pembimbingsekolah');
+            redirect('data/pembimbing_sekolah');
         }
     }
 
@@ -121,7 +121,7 @@ class PembimbingSekolah extends CI_Controller
         if ($this->form_validation->run() == true) {
             $this->mps->update($input, $id);
             $this->session->set_flashdata('main', 'data Pembimbing Sekolah berhasil diubah!');
-            redirect('data/pembimbingsekolah');
+            redirect('data/pembimbing_sekolah');
         } else {
             $this->_index($data, 'ubah_data');
         }

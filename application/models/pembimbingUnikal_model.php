@@ -1,6 +1,6 @@
 <?php
 
-class pembimbingUnikal_model extends CI_Model{
+class PembimbingUnikal_model extends CI_Model{
 
     //*--- Start of Table Serverside ---*//
     var $table = "pembimbing_unikal";

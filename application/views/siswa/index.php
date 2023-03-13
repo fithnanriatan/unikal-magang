@@ -84,9 +84,9 @@
 					</label>
 					<select name="flt_status" id="flt_status" class="form-control">
 						<option value="">-- Pilih Status --</option>
-						<option value="pending">Pending</option>
-						<option value="active">Active</option>
-						<option value="alumni">Alumni</option>
+						<option value="1">Pending</option>
+						<option value="2">Active</option>
+						<option value="3">Alumni</option>
 					</select>
 				</div>
 			</div>

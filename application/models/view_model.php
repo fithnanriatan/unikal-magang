@@ -1,6 +1,6 @@
 <?php
 
-class view_model extends CI_Model
+class View_model extends CI_Model
 {
     public function main_view(
         $data = [],

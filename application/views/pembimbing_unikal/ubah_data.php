@@ -39,7 +39,7 @@
                     <?= form_error('alamat', '<small class="form-text text-danger ml-1">', '</small>'); ?>
                 </div>
                 <div class="mt-4">
-                    <a href="<?= base_url('data/pembimbingunikal'); ?>" class="btn btn-danger">Batal</a>
+                    <a href="<?= base_url('data/pembimbing_unikal'); ?>" class="btn btn-danger">Batal</a>
                     <button name="ubah" type="submit" class="btn btn-primary">Ubah Data</button>
                 </div>
             </form>

@@ -10,7 +10,7 @@
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?= base_url('data/pembimbingsekolah/getData/'); ?>",
+                "url": "<?= base_url('data/pembimbing_sekolah/getData/'); ?>",
                 "type": "POST",
             },
             "columnDefs": [{
