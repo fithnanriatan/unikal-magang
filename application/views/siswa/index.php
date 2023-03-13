@@ -16,81 +16,81 @@
 	</div>
 	<div class="card shadow mb-2">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Filter Tabel Siswa</h6>
+			<div class="d-flex justify-content-between">
+				<h6 class="m-0 font-weight-bold text-primary">Filter Tabel Siswa</h6>
+				<button type="button" id="btn_riset" class="btn btn-sm btn-info">Riset</button>
+			</div>
 		</div>
 		<div class="card-body px-3 py-2 pt-3">
-		<div class="row mb-2">
-			<div class="col-md-4">
-				<label for="bln_awal">
-					Bulan Awal
-				</label>
-				<input name="bln_awal" id="bln_awal" type="month" class="form-control bg-white">
-			</div>
-			<div class="col-md-4">
-				<label for="bln_akhir">
-					Bulan Akhir
-				</label>
-				<input name="bln_akhir" id="bln_akhir" type="month" class="form-control bg-white">
-			</div>
-			<div class="col-md-4">
-				<div class="form-group">
-					<label for="angkatan">
-						Angkatan
+			<div class="row mb-2">
+				<div class="col-md-4">
+					<label for="bln_awal">
+						Bulan Awal
 					</label>
-					<select class="form-control" name="angkatan" id="angkatan">
-						<?php $tahun = date('Y');
-						for ($i = 2020; $i < $tahun + 3; $i++) : ?>
-							<?php if ($i == date('Y')) : ?>
-								<option value="<?= $i; ?>" selected><?= $i; ?>/<?= $i + 1; ?></option>
-							<?php else : ?>
+					<input name="bln_awal" id="bln_awal" type="month" class="form-control bg-white">
+				</div>
+				<div class="col-md-4">
+					<label for="bln_akhir">
+						Bulan Akhir
+					</label>
+					<input name="bln_akhir" id="bln_akhir" type="month" class="form-control bg-white">
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="flt_angkatan">
+							Angkatan
+						</label>
+						<select class="form-control" name="flt_angkatan" id="flt_angkatan">
+							<option value="">-- Pilih Angkatan --</option>
+							<?php $tahun = date('Y');
+							for ($i = 2020; $i < $tahun + 3; $i++) : ?>
 								<option value="<?= $i; ?>"><?= $i; ?>/<?= $i + 1; ?></option>
-							<?php endif; ?>
-						<?php endfor; ?>
-					</select>
+							<?php endfor; ?>
+						</select>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<div class="form-group">
-					<label for="flt_sekolah">
-						Asal Sekolah
-					</label>
-					<select class="form-control" name="flt_sekolah" id="flt_sekolah">
-						<option value="">-- Pilih Sekolah --</option>
-						<?php foreach ($sekolah as $s) : ?>
-							<option value="<?= $s['id_sekolah']; ?>"><?= $s['nama_sekolah']; ?></option>
-						<?php endforeach; ?>
-					</select>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="flt_sekolah">
+							Asal Sekolah
+						</label>
+						<select class="form-control" name="flt_sekolah" id="flt_sekolah">
+							<option value="">-- Pilih Sekolah --</option>
+							<?php foreach ($sekolah as $s) : ?>
+								<option value="<?= $s['id_sekolah']; ?>"><?= $s['nama_sekolah']; ?></option>
+							<?php endforeach; ?>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="flt_pembimbing">
+							Pembimbing Unikal
+						</label>
+						<select class="form-control" name="flt_pembimbing" id="flt_pembimbing">
+							<option value="" selected>-- Pilih Pembimbing Unikal --</option>
+							<?php foreach ($pem_unikal as $pu) : ?>
+								<option value="<?= $pu['id_pembimbing_unikal']; ?>"><?= $pu['nama_pembimbing']; ?></option>
+							<?php endforeach; ?>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form_group">
+						<label for="status">
+							Status
+						</label>
+						<select name="flt_status" id="flt_status" class="form-control">
+							<option value="">-- Pilih Status --</option>
+							<option value="1">Pending</option>
+							<option value="2">Active</option>
+							<option value="3">Alumni</option>
+						</select>
+					</div>
 				</div>
 			</div>
-			<div class="col-md-4">
-				<div class="form-group">
-					<label for="flt_pembimbing">
-						Pembimbing Unikal
-					</label>
-					<select class="form-control" name="flt_pembimbing" id="flt_pembimbing">
-						<option value="" selected>-- Pilih Pembimbing Unikal --</option>
-						<?php foreach ($pem_unikal as $pu) : ?>
-							<option value="<?= $pu['id_pembimbing_unikal']; ?>"><?= $pu['nama_pembimbing']; ?></option>
-						<?php endforeach; ?>
-					</select>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="form_group">
-					<label for="status">
-						Status
-					</label>
-					<select name="flt_status" id="flt_status" class="form-control">
-						<option value="">-- Pilih Status --</option>
-						<option value="1">Pending</option>
-						<option value="2">Active</option>
-						<option value="3">Alumni</option>
-					</select>
-				</div>
-			</div>
-		</div>
 		</div>
 	</div>
 	</form>

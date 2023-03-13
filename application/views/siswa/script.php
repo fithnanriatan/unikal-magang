@@ -28,6 +28,7 @@
                 "data": function(data) {
                     data.bln_awal   = $('#bln_awal').val()
                     data.bln_akhir  = $('#bln_akhir').val()
+                    data.angkatan   = $('#flt_angkatan').val()
                     data.sekolah    = $('#flt_sekolah').val()
                     data.pembimbing = $('#flt_pembimbing').val()
                     data.status     = $('#flt_status').val()
@@ -39,28 +40,59 @@
             }]
         });
 
-        // Filter Asal Sekolah
-        $('#flt_sekolah').on('change', function() {
-            table.ajax.reload()
-        })
-        // Filter Pembimbing Unikal
-        $('#flt_pembimbing').on('change', function() {
-            table.ajax.reload()
-        })
         // Filter Bulan Masuk
         $('#bln_awal').on('change', function() {
+            $('#flt_sekolah').val('')
+            $('#flt_pembimbing').val('')
+            $('#flt_status').val('')
+            $('#flt_angkatan').val('')
             table.ajax.reload()
         })
         // Filter Bulan Masuk
         $('#bln_akhir').on('change', function() {
+            $('#flt_sekolah').val('')
+            $('#flt_pembimbing').val('')
+            $('#flt_status').val('')
+            $('#flt_angkatan').val('')
+            table.ajax.reload()
+        })
+        // Filter Angkatan
+        $('#flt_angkatan').on('change', function() {
+            $('#bln_awal').val('')
+            $('#bln_akhir').val('')
+            $('#flt_status').val('')
+            table.ajax.reload()
+        })
+        // Filter Asal Sekolah
+        $('#flt_sekolah').on('change', function() {
+            $('#bln_awal').val('')
+            $('#bln_akhir').val('')
+            table.ajax.reload()
+        })
+        // Filter Pembimbing Unikal
+        $('#flt_pembimbing').on('change', function() {
+            $('#bln_awal').val('')
+            $('#bln_akhir').val('')
             table.ajax.reload()
         })
         // Filter Status Siswa
-        $('flt_status').on('change', function() {
+        $('#flt_status').on('change', function() {
+            $('#bln_awal').val('')
+            $('#bln_akhir').val('')
+            $('#flt_angkatan').val('')
+            table.ajax.reload()
+        })
+        $('#btn_riset').on('click', function(){
+            $('#flt_sekolah').val('')
+            $('#flt_pembimbing').val('')
+            $('#flt_status').val('')
+            $('#flt_angkatan').val('')
+            $('#bln_awal').val('')
+            $('#bln_akhir').val('')
             table.ajax.reload()
         })
 
-
+        
         //---->||  Input Pembimbing Sekolah  ||<----//
         $('#asalsekolah').change(function() {
             var id_sekolah = $(this).val();

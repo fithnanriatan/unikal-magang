@@ -13,7 +13,9 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
+    <li class="nav-item <?php if ($this->uri->segment(1) == 'dashboard') {
+                            echo "active";
+                        } ?>">
         <a class="nav-link" href="<?= base_url('dashboard'); ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -28,29 +30,37 @@
     </div>
 
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
+    <li class="nav-item <?php if ($this->uri->segment(2) == 'sekolah') {
+                            echo "active";
+                        } ?>">
         <a class="nav-link" href="<?= base_url('data/sekolah'); ?>">
             <i class="fas fa-fw fa-school"></i>
             <span>Sekolah</span></a>
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
+    <li class="nav-item <?php if ($this->uri->segment(2) == 'pembimbing_sekolah') {
+                            echo "active";
+                        } ?>">
         <a class="nav-link" href="<?= base_url('data/pembimbing_sekolah'); ?>">
             <i class="fas fa-fw fa-user-tag"></i>
             <span>Pembimbing Sekolah</span></a>
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
+    <li class="nav-item <?php if ($this->uri->segment(2) == 'pembimbing_unikal') {
+                            echo "active";
+                        } ?>">
         <a class="nav-link" href="<?= base_url('data/pembimbing_unikal'); ?>">
             <i class="fas fa-fw fa-user-tie"></i>
             <span>Pembimbing Unikal</span></a>
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('data/siswa'); ?>">
+    <li id="nav-item-siswa" class="nav-item <?php if ($this->uri->segment(2) == 'siswa') {
+                                                echo "active";
+                                            } ?>">
+        <a id="btn-siswa" class="nav-link" href="<?= base_url('data/siswa'); ?>">
             <i class="fas fa-fw fa-user-graduate"></i>
             <span>Siswa</span></a>
     </li>

@@ -139,17 +139,19 @@
                         <table class="table table-bordered" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th scope="col">#</th>
                                     <th scope="col">Nama</th>
                                     <th scope="col">Asal Sekolah</th>
                                 </tr>
                             </thead>
                             <tbody class="font-weight-normal">
-                                <tr>
-                                    <?php foreach($status['aktif'] as $s) : ?>
+                                <?php $i = 1; foreach ($status['aktif'] as $s) : ?>
+                                    <tr>
+                                        <th><?= $i++; ?></th>
                                         <th><?= $s['nama_siswa']; ?></th>
                                         <th><?= $s['nama_sekolah']; ?></th>
-                                    <?php endforeach; ?>
-                                </tr>
+                                    </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
