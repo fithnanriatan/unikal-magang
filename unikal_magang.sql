@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 01 Mar 2023 pada 07.45
+-- Waktu pembuatan: 26 Mar 2023 pada 17.27
 -- Versi server: 5.7.33
 -- Versi PHP: 7.2.32
 
@@ -44,7 +44,8 @@ CREATE TABLE `pembimbing_sekolah` (
 
 INSERT INTO `pembimbing_sekolah` (`id_pembimbing_sekolah`, `id_sekolah`, `nama_pembimbing`, `alamat`, `no_telp`, `email`, `created_at`, `updated_at`) VALUES
 (7, 60, 'Arif Setiawan', 'Jl Tulis, Desa Ging Gong, Batang', '024751549478', 'hrefstwn775@gmail.com', '2023-02-17 01:20:29', '2023-02-17 01:28:06'),
-(9, 64, 'Saifudin Aji Negara', 'affafafasfdasdfasfas', '088812341234', 'saifudin_aji@gmail.com', '2023-02-27 21:33:30', '2023-02-27 14:33:30');
+(9, 64, 'Saifudin Aji Negara', 'affafafasfdasdfasfas', '088812341234', 'saifudin_aji@gmail.com', '2023-02-27 21:33:30', '2023-02-27 14:33:30'),
+(10, 65, 'jasmine', '', '097654333', '', '2023-03-16 13:21:17', '2023-03-16 06:21:17');
 
 -- --------------------------------------------------------
 
@@ -79,6 +80,7 @@ INSERT INTO `pembimbing_unikal` (`id_pembimbing_unikal`, `nama_pembimbing`, `ala
 CREATE TABLE `sekolah` (
   `id_sekolah` int(11) NOT NULL,
   `nama_sekolah` varchar(100) NOT NULL,
+  `kota` varchar(100) NOT NULL,
   `alamat` text NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -88,11 +90,11 @@ CREATE TABLE `sekolah` (
 -- Dumping data untuk tabel `sekolah`
 --
 
-INSERT INTO `sekolah` (`id_sekolah`, `nama_sekolah`, `alamat`, `created_at`, `updated_at`) VALUES
-(39, 'SMK Muhammadiyah Ulujami', 'Jl. Raya Rowosari, Dusun Empat, Rowosari, Kec. Ulujami, Kabupaten Pemalang, Jawa Tengah 52371', '0000-00-00 00:00:00', '2023-02-01 07:48:41'),
-(60, 'MI Manba\'ul Ulum', 'Jl Sumatra, Gang xx, Kergon, Pekalongan', '2023-02-17 01:13:00', '2023-02-17 01:13:00'),
-(64, 'SMK Negeri 1 Punggelan', 'Jl. Ps. Manis, Kepering, Punggelan, Kec. Punggelan, Kab. Banjarnegara, Jawa Tengah 53462', '2023-02-27 21:26:03', '2023-02-27 14:26:03'),
-(65, 'SMK 1 Kedungwuni', 'fajkljadkfjafasdfasd', '2023-03-01 09:58:46', '2023-03-01 02:58:46');
+INSERT INTO `sekolah` (`id_sekolah`, `nama_sekolah`, `kota`, `alamat`, `created_at`, `updated_at`) VALUES
+(39, 'SMK Muhammadiyah Ulujami', 'Kab. Pemalang', 'Jl. Raya Rowosari, Dusun Empat, Rowosari, Kec. Ulujami, Kabupaten Pemalang, Jawa Tengah 52371', '0000-00-00 00:00:00', '2023-03-15 16:44:53'),
+(60, 'MI Manba\'ul Ulum', 'Kota Pekalongan', 'Jl Sumatra, Gang xx, Kergon, Pekalongan', '2023-02-17 01:13:00', '2023-03-15 16:45:02'),
+(64, 'SMK Negeri 1 Punggelan', 'Kab Banjarnegara', 'Jl. Ps. Manis, Kepering, Punggelan, Kec. Punggelan, Kab. Banjarnegara, Jawa Tengah 53462', '2023-02-27 21:26:03', '2023-03-15 16:43:50'),
+(65, 'Tadika Mesra', 'Kuala Lumpur', 'Jl, xx alfkjalkfjaf asfj asfkjk', '2023-03-15 23:42:41', '2023-03-15 16:42:41');
 
 -- --------------------------------------------------------
 
@@ -124,9 +126,9 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`id_siswa`, `nama_siswa`, `nisn`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `no_telp`, `email`, `foto`, `tgl_masuk`, `tgl_keluar`, `id_sekolah`, `id_pembimbing_sekolah`, `id_pembimbing_unikal`, `created_at`, `updated_at`) VALUES
-(9, 'M. Iyan Tsabit Saputra', '77339901', 'Bendan', '2005-06-04', 'Jl xx xx, Gang xx, Xx, Pekalongan,  Jawa Tengah', '081234459543', 'mimu@gmail.com', 'ab768560898219a4833160284ba3cbc5.jpg', '2023-02-01', '2023-02-28', 60, 7, 6, '0000-00-00 00:00:00', '2023-03-01 02:26:46'),
-(11, 'Tsakilatu Syifa\'', '77339902', 'Pekalongan', '2005-06-19', 'Jl. Sulawesi, Gang 5A, Kergon, Pekalongan', '081438923543', 'mimu@gmail.com', '19c42dd8ded86dfae0cc19188d8f2c1d.jpg', '2023-02-15', '2023-03-31', 60, 7, 6, '0000-00-00 00:00:00', '2023-03-01 07:43:38'),
-(21, 'Krelis Agustina', '73913384', 'Pekalongan', '2006-08-07', 'Jl. Sulawesi, Gang xx, Bendan, Pekalongan', '088778523543', 'krelis@gmail.com', '2827fd1cf146501049b7c58098962748.jpg', '2023-03-15', '2023-03-30', 60, 7, 6, '0000-00-00 00:00:00', '2023-03-01 07:43:26'),
+(9, 'M. Iyan Tsabit Saputra', '77339901', 'Bendan', '2005-06-04', 'Jl xx xx, Gang xx, Xx, Pekalongan,  Jawa Tengah', '081234459543', 'mimu@gmail.com', 'ab768560898219a4833160284ba3cbc5.jpg', '2023-02-01', '2023-06-20', 60, 7, 6, '0000-00-00 00:00:00', '2023-03-15 14:04:17'),
+(11, 'Tsakilatu Syifa\'', '77339902', 'Pekalongan', '2005-06-19', 'Jl. Sulawesi, Gang 5A, Kergon, Pekalongan', '081438923543', 'mimu@gmail.com', '19c42dd8ded86dfae0cc19188d8f2c1d.jpg', '2023-03-14', '2023-03-31', 60, 7, 6, '0000-00-00 00:00:00', '2023-03-17 16:18:04'),
+(21, 'Krelis Agustina', '73913384', 'Pekalongan', '2006-08-07', 'Jl. Sulawesi, Gang xx, Bendan, Pekalongan', '088778523543', 'krelis@gmail.com', '2827fd1cf146501049b7c58098962748.jpg', '2023-11-15', '2024-03-28', 60, 7, 6, '0000-00-00 00:00:00', '2023-03-13 13:18:34'),
 (24, 'Sawa Hajita N', '00477239006', 'Banjarnegara', '2004-02-07', 'Kecepit RT 04 RW 02, Punggelan, Banjarnegara', '085602425506', 'sawahajitanailah@gmail.com', '828314e9554f31a8b6aa90e5fec97d14.jpg', '2022-07-05', '2023-02-28', 64, 9, 7, '0000-00-00 00:00:00', '2023-02-27 14:38:17'),
 (25, 'Riska Fitriyani Wulandari', '0037826139', 'Banjarnegara', '2003-11-17', 'Purbalingga, Pengadegan, Temanggal RT 03/ RW 02', '0882008953222', 'wulanriska851@gmail.com', '86eaa1a46d59ca6039f04cbc5a70441a.jpg', '2022-07-05', '2023-02-28', 64, 9, 7, '0000-00-00 00:00:00', '2023-02-27 14:40:45'),
 (26, 'Retno Sumilir', '0044706092', 'Kebumen', '2004-08-14', 'Jateng, Banjarnegara, Punggelan, Danakerta RT02/RW01', '085723905863', 'retnoo1408@gmail.com', '8d4ee611569f5fc14d8e6c8bb147efac.jpg', '2022-07-05', '2023-02-28', 64, 9, 7, '0000-00-00 00:00:00', '2023-02-27 14:44:07'),
@@ -152,7 +154,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nama_lengkap`, `nama_user`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'Admin Utama', 'admin', '12345', '2023-01-27 02:48:06', '2023-01-27 02:50:11');
+(10, 'Admin Utama', 'admin', '$2y$10$rgXkWJn92yHIB9IGpyB9N.DCMdfwzzyU0DegcMafPvZ6vEMDKt02y', '0000-00-00 00:00:00', '2023-03-26 17:04:17');
 
 --
 -- Indexes for dumped tables
@@ -206,25 +208,25 @@ ALTER TABLE `pembimbing_sekolah`
 -- AUTO_INCREMENT untuk tabel `pembimbing_unikal`
 --
 ALTER TABLE `pembimbing_unikal`
-  MODIFY `id_pembimbing_unikal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_pembimbing_unikal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `sekolah`
 --
 ALTER TABLE `sekolah`
-  MODIFY `id_sekolah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id_sekolah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
