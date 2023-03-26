@@ -25,14 +25,14 @@
                 </div>
                 <div class="form-group">
                     <label for="email">
-                        E-Mail
+                        E-Mail (optional)
                     </label>
                     <input name="email" id="email" type="text" class="form-control bg-white" value="<?= set_value('email'); ?>">
                     <?= form_error('email', '<small class="form-text text-danger ml-1">', '</small>'); ?>
                 </div>
                 <div class="form-group">
                     <label for="alamat">
-                        Alamat
+                    Alamat (optional)
                     </label>
                     <textarea name="alamat" id="alamat" class="form-control bg-white" rows="3"><?= set_value('alamat'); ?></textarea>
                     <?= form_error('alamat', '<small class="form-text text-danger ml-1">', '</small>'); ?>

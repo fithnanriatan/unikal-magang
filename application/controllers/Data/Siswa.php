@@ -43,6 +43,43 @@ class Siswa extends CI_Controller
         foreach ($results as $r) {
             $asal = '<span class="d-inline-block text-truncate" style="max-width: 170px;">' . $r['nama_sekolah'] . '</span>';
 
+            // Sintaks Masa Aktif
+            $hari_ini  = new DateTime(date('Y-m-d'));
+            $tgl_akhir = new DateTime($r['tgl_keluar']);
+
+            $selisih = date_diff($hari_ini, $tgl_akhir);
+
+            $sisa_bulan = $selisih->m;
+            $sisa_hari = $selisih->d;
+
+            if ($tgl_akhir >= $hari_ini && $r['tgl_masuk'] <= date('Y-m-d')) {
+                $masa_aktif = $sisa_bulan . " bulan, " . $sisa_hari . " hari";
+            } else {
+                $masa_aktif = '&ensp;-';
+            }
+
+            // Sintaks Durasi
+            $detik = strtotime($r['tgl_keluar']) - strtotime($r['tgl_masuk']);
+
+            //-- hitung jumlah detik dalam satu hari, satu bulan, dan satu tahun
+            $detikPerHari = 24 * 60 * 60;
+            $detikPerBulan = 30 * $detikPerHari;
+            $detikPerTahun = 365 * $detikPerHari;
+
+            //-- hitung jumlah tahun, bulan, dan hari dalam detik
+            $tahun = floor($detik / $detikPerTahun);
+            $sisaDetik = $detik % $detikPerTahun;
+            $bulan = floor($sisaDetik / $detikPerBulan);
+            $sisaDetik = $sisaDetik % $detikPerBulan;
+            $hari = floor($sisaDetik / $detikPerHari);
+
+            if ($tahun == 0) {
+                $durasi = $bulan . ' bulan, ' . $hari . ' hari.';
+            } else {
+                $durasi = $tahun . ' tahun, ' . $bulan . ' bulan, ' . $hari . ' hari.';
+            }
+
+            // Sintaks Status
             $masuk  = strtotime($r['tgl_masuk']);
             $keluar = strtotime($r['tgl_keluar']);
             $date   = strtotime(date('Y-m-d'));
@@ -69,7 +106,7 @@ class Siswa extends CI_Controller
                         <a href="' . base_url("data/siswa/hapusdata/") . '" data-id="' . $r["id_siswa"] . '" class="btn btn-outline-danger btn-sm btn-hapus"><i class="far fa-trash-alt"></i></a>
                     </div>';
 
-            $row = [++$no, $r['nama_siswa'], $asal, $r['nama_pembimbing'], $tgl_masuk, $tgl_keluar, $status, $aksi];
+            $row = [++$no, $r['nama_siswa'], $asal, $r['nama_pembimbing'], $durasi, $masa_aktif, $status, $aksi];
             $data[] = $row;
         }
 
@@ -338,12 +375,12 @@ class Siswa extends CI_Controller
             "required"      => "Massukkan {field} terlebih dahulu",
         ];
 
-        $this->form_validation->set_rules('nama',   'Nama',         'trim|required',                $msgKolom);
-        $this->form_validation->set_rules('nisn',   'NISN',         'trim|required|numeric',        $msgKolom);
-        $this->form_validation->set_rules('telp',   'No Telephone', 'trim|required|numeric',        $msgKolom);
-        $this->form_validation->set_rules('email',  'E-Mail',       'trim|required|valid_email',    $msgKolom);
-        $this->form_validation->set_rules('tempat', 'Tempat Lahir', 'trim|required',                $msgKolom);
-        $this->form_validation->set_rules('alamat', 'Alamat',       'trim|required',                $msgKolom);
+        $this->form_validation->set_rules('nama',   'Nama',         'trim|required',        $msgKolom);
+        $this->form_validation->set_rules('nisn',   'NISN',         'trim|numeric',         $msgKolom);
+        $this->form_validation->set_rules('telp',   'No Telephone', 'trim|required|numeric', $msgKolom);
+        $this->form_validation->set_rules('email',  'E-Mail',       'trim|valid_email',     $msgKolom);
+        $this->form_validation->set_rules('tempat', 'Tempat Lahir', 'trim|required',        $msgKolom);
+        $this->form_validation->set_rules('alamat', 'Alamat',       'trim|required',        $msgKolom);
 
         $this->form_validation->set_rules('tanggal',    'Tanggal Lahir',    'trim|required', $msgDate);
         $this->form_validation->set_rules('tgl-masuk',  'Tanggal Masuk',    'trim|required', $msgDate);

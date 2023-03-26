@@ -40,11 +40,12 @@ class Sekolah extends CI_Controller
 
         foreach ($results as $r) {
             $nama = '<span class="text-truncate">'.$r['nama_sekolah'].'</span>';
+            $kota = '<span class="text-truncate">'.$r['kota'].'</span>';
             $aksi = '<div class="div d-flex">
                         <a class="btn btn-outline-primary btn-sm tombolUbahSekolah" data-toggle="modal" data-target="#modal-sekolah" data-id="' . $r['id_sekolah'] . '"><i class="far fa-edit"></i></a>
                         <a href="' . base_url("data/sekolah/dropDataSekolah") . '" class="btn btn-outline-danger btn-sm ml-1 btn-delete" data-id="' . $r["id_sekolah"] . '"><i class="far fa-trash-alt"></i></a>
                     </div>';
-            $row = [++$no, $nama, $r['alamat'], $aksi];
+            $row = [++$no, $nama, $kota, $r['alamat'], $aksi];
             $data[] = $row;
         }
 
@@ -62,6 +63,7 @@ class Sekolah extends CI_Controller
     {
         $input = [
             "nama_sekolah" => $this->input->post('nama'),
+            "kota" => $this->input->post('kota'),
             "alamat" => $this->input->post('alamat'),
             "created_at" => date("Y-m-d H:i:s")
         ];
@@ -83,6 +85,7 @@ class Sekolah extends CI_Controller
 
         $input = [
             "nama_sekolah" => $this->input->post('nama'),
+            "kota" => $this->input->post('kota'),
             "alamat" => $this->input->post('alamat')
         ];
 
@@ -135,6 +138,7 @@ class Sekolah extends CI_Controller
             "required" => "Kolom {field} harus diisi",
         ];
         $this->form_validation->set_rules('nama', 'Nama', 'required', $message);
+        $this->form_validation->set_rules('kota', 'Kota Asal', 'required', $message);
         $this->form_validation->set_rules('alamat', 'Alamat', 'required', $message);
 
         if ($this->form_validation->run() == TRUE) {
@@ -146,6 +150,7 @@ class Sekolah extends CI_Controller
             $status = [
                 'error' => true,
                 'nama_error' => form_error('nama'),
+                'kota_error' => form_error('kota'),
                 'alamat_error' => form_error('alamat'),
             ];
 

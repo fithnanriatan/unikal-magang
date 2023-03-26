@@ -43,9 +43,11 @@
 
             $('#id').val(null)
             $('#nama').val(null)
+            $('#kota').val(null)
             $('#alamat').val(null)
 
             $('#nama_error').html('')
+            $('#kota_error').html('')
             $('#alamat_error').html('')
         })
 
@@ -58,6 +60,7 @@
             $('#sekolah_form input[name="jns_form"]').val('edit');
 
             $('#nama_error').html('')
+            $('#kota_error').html('')
             $('#alamat_error').html('')
 
             const idsekolah = $(this).data('id')
@@ -68,11 +71,11 @@
                     id: idsekolah
                 },
                 method: 'post',
-
                 dataType: 'json',
                 success: function(data) {
                     $('#id').val(data.id_sekolah)
                     $('#nama').val(data.nama_sekolah)
+                    $('#kota').val(data.kota)
                     $('#alamat').val(data.alamat)
                 }
             })
@@ -154,7 +157,11 @@
                         } else {
                             $('#nama_error').html('')
                         }
-
+                        if (data.kota_erorr != '') {
+                            $('#kota_error').html(data.kota_error)
+                        } else {
+                            $('#kota_error').html('')
+                        }
                         if (data.alamat_erorr != '') {
                             $('#alamat_error').html(data.alamat_error)
                         } else {

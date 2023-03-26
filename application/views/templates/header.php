@@ -35,6 +35,3 @@
     <div id="base-url" name="base-url" class="base-url" data-url="<?= base_url(); ?>"></div>
 
     <div name="flashdata" class="flash-data" data-flashmain="<?= $this->session->flashdata('main'); ?>" data-flashauth="<?= $this->session->flashdata('auth'); ?>" data-flasheror="<?= $this->session->flashdata('error'); ?>"></div>
-
-    <!-- Page Wrapper -->
-    <div id="wrapper">

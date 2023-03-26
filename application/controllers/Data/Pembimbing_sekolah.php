@@ -157,8 +157,8 @@ class Pembimbing_sekolah extends CI_Controller
 
         $this->form_validation->set_rules('nama',   'Nama',         'trim|required',            $message);
         $this->form_validation->set_rules('telp',   'No Telephone', 'trim|required|numeric',    $message);
-        $this->form_validation->set_rules('email',  'E-Mail',       'trim|required|valid_email', $message);
-        $this->form_validation->set_rules('alamat', 'Alamat',       'trim|required',            $message);
+        $this->form_validation->set_rules('email',  'E-Mail',       'trim|valid_email', $message);
+        $this->form_validation->set_rules('alamat', 'Alamat',       'trim',            $message);
         $this->form_validation->set_rules('asalsekolah', 'Asal Sekolah', 'trim|required', [
             "required" => "Pilih {field} terlebih dahulu"
         ]);

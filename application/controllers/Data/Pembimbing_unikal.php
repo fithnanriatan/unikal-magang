@@ -64,11 +64,6 @@ class Pembimbing_unikal extends CI_Controller
 
     public function TambahData()
     {
-        // $data = [
-        //     "title" => $this->title,
-        //     "label" => "Tambah Data Pembimbing Unikal",
-        // ];
-
         $date = date('Y-m-d H:i:s');
 
         $input = [
@@ -85,16 +80,6 @@ class Pembimbing_unikal extends CI_Controller
             "success" => true,
             "message" => "data Pembimbing Unikal berhasil ditambahkan",
         ]);
-
-        // $this->_formRules();
-
-        // if ($this->form_validation->run() == false) {
-        //     $this->_index($data, 'tambah_data');
-        // } else {
-        //     $this->mpu->insert($input);
-        //     $this->session->set_flashdata('main', 'data Pembimbing Unikal berhasil ditambahkan!');
-        //     redirect('data/pembimbing_unikal');
-        // }
     }
 
     public function ubahData($id)
@@ -152,8 +137,8 @@ class Pembimbing_unikal extends CI_Controller
         ];
 
         $this->form_validation->set_rules('nama',   'Nama',         'trim|required',            $message);
-        $this->form_validation->set_rules('telp',   'No Telephone', 'trim|required|numeric',    $message);
-        $this->form_validation->set_rules('email',  'E-Mail',       'trim|required|valid_email', $message);
-        $this->form_validation->set_rules('alamat', 'Alamat',       'trim|required',            $message);
+        $this->form_validation->set_rules('telp',   'No Telephone', 'trim|numeric',    $message);
+        $this->form_validation->set_rules('email',  'E-Mail',       'trim|valid_email', $message);
+        $this->form_validation->set_rules('alamat', 'Alamat',       'trim',            $message);
     }
 }

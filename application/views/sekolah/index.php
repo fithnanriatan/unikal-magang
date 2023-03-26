@@ -12,6 +12,7 @@
                         <tr class="text-truncate">
                             <th scope="col">#</th>
                             <th scope="col">Nama Sekolah</th>
+                            <th scope="col">Kota Asal</th>
                             <th scope="col">Alamat&emsp;&emsp;&emsp;</th>
                             <th scope="col">Aksi</th>
                         </tr>
@@ -40,6 +41,11 @@
                         <label for="nama" class="col-form-label">Nama Sekolah:</label>
                         <input type="text" id="nama" name="nama" class="form-control">
                         <small id="nama_error" class="text-danger"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="kota" class="col-form-label">Kota Asal:</label>
+                        <input type="text" id="kota" name="kota" class="form-control">
+                        <small id="kota_error" class="text-danger"></small>
                     </div>
                     <div class="form-group">
                         <label for="alamat" class="col-form-label">Alamat:</label>

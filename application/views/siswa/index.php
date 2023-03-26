@@ -104,8 +104,8 @@
 							<th scope="col" class="text-truncate">Nama</th>
 							<th scope="col" class="text-truncate">Asal Sekolah</th>
 							<th scope="col" class="text-truncate">Pembimbing</th>
-							<th scope="col" class="text-truncate">Tgl Masuk</th>
-							<th scope="col" class="text-truncate">Tgl Keluar</th>
+							<th scope="col" class="text-truncate">Durasi</th>
+							<th scope="col" class="text-truncate">Masa Aktif</th>
 							<th scope="col" class="text-truncate">Status</th>
 							<th scope="col" class="text-truncate">Aksi</th>
 						</tr>

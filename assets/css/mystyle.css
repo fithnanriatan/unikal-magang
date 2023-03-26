@@ -2,3 +2,11 @@
 {
     min-height: 73vh;
 }
+.invalid-feedback
+{
+    left: 3px;
+    color: #e74a3b !important;
+    font-size: 0.7rem;
+    position: relative;
+    line-height: 1;
+}
