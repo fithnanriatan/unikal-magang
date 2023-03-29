@@ -43,8 +43,9 @@ class Account extends CI_Controller
             $nama = '<span class="text-truncate">' . $r['nama_lengkap'] . '</span>';
             $username = '<span class="text-truncate">' . $r['nama_user'] . '</span>';
             $aksi = '<div class="div d-flex">
-                        <a class="btn btn-outline-primary btn-sm tombolUbahUser" data-toggle="modal" data-target="#modal-user" data-id="' . $r['id_user'] . '"><i class="far fa-edit"></i></a>
-                        <a href="' . base_url("account/dropDataAccount") . '" class="btn btn-outline-danger btn-sm ml-1 btn-delete" data-id="' . $r["id_user"] . '"><i class="far fa-trash-alt"></i></a>
+                        <a class="btn btn-outline-primary btn-sm tombolUbahUser" data-toggle="modal" data-target="#modal-ubah-user" data-id="' . $r['id_user'] . '"><i class="far fa-edit"></i></a>
+                        <a class="btn btn-outline-warning btn-sm mx-1" data-toggle="modal" data-target="#modal-ganti-pass" data-id="' . $r['id_user'] . '"><i class="fas fa-unlock-alt"></i></a>
+                        <a href="' . base_url("account/dropDataAccount") . '" class="btn btn-outline-danger btn-sm btn-delete" data-id="' . $r["id_user"] . '"><i class="far fa-trash-alt"></i></a>
                     </div>';
             $row = [++$no, $nama, $username, $aksi];
             $data[] = $row;
@@ -84,12 +85,25 @@ class Account extends CI_Controller
         
         echo json_encode([
             'success' => true,
-            'message' => 'data User berhasil ditambahkan'
+            'message' => 'data Account berhasil ditambahkan'
         ]);
     }
 
-    public function editDataUser()
+    public function ubahData()
     {
+        $id = $this->input->post('id');
+
+        $data = [
+            'nama_lengkap'  => $this->input->post('ubah_nama'),
+            'nama_user'     => $this->input->post('ubah_username')
+        ];
+
+        $this->db->update('user', $data, ['id_user' => $id]);
+
+        echo json_encode([
+            'success' => true,
+            'message' => 'data Account berhasil diubah'
+        ]);
     }
 
     public function dropDataAccount()

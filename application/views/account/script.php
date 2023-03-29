@@ -33,73 +33,43 @@
             }]
         });
 
+        
         //---->||  Set Model Tambah Data  ||<----//
         $('.tombolTambahUser').on('click', function() {
-
-            $('#modalLabel').html('Tambah Data User')
-            $('.modal-footer Button[type=submit]').html('Tambahkan')
-            $('.modal-content form').attr('action', urluser + 'addDataUser')
-            $('#user_form input[name="jns_form"]').val('add');
 
             $('#id').val(null)
             $('#nama').val(null)
             $('#username').val(null)
             $('#password').val(null)
             $('#password2').val(null)
+
+            $('.input-validation .form-control').removeClass('is-invalid')
         })
 
-        //---->||  Set Modal Ubah Data  ||<----//
-        $('#tabel-user').on('click', '.tombolUbahUser', function() {
-
-            $('#modalLabel').html('Ubah Data User')
-            $('.modal-footer Button[type=submit]').html('Ubah Data')
-            $('.modal-content form').attr('action', urluser + 'editDataUser');
-            $('#user_form input[name="jns_form"]').val('edit');
-
-            const iduser = $(this).data('id')
-
-            $.ajax({
-                url: urluser + 'editDataUser_json',
-                data: {
-                    id: iduser
-                },
-                method: 'post',
-                dataType: 'json',
-                success: function(data) {
-                    $('#id').val(data.id_user)
-                    $('#nama').val(data.nama_lengkap)
-                    $('#username').val(data.nama_user)
-                    $('#password').val('')
-                    $('#password2').val('')
-                }
-            })
-        })
-
-        $('#form-user').validate({
+        //---->||  Tambah Account Validasi  ||<----//
+        $('#form-tambah-user').validate({
             rules: {
-                username: {
-                    required: true
-                },
+                username: 'required',
                 password: {
                     required: true,
                     minlength: 5
                 },
                 password2: {
                     required: true,
-                    minlength: 5
+                    minlength: 5,
+                    equalTo: '#password'
                 }
             },
             messages: {
-                username: {
-                    required: "Username harus diisi"
-                },
+                username: "Username harus diisi",
                 password: {
                     required: "Password harus diisi",
                     minlength: "Password minimal berisi 5 karakter"
                 },
                 password2: {
                     required: "Konfirmasi Password harus diisi",
-                    minlength: "Password minimal berisi 5 karakter"
+                    minlength: "Password minimal berisi 5 karakter",
+                    equalTo: "Password tidak sesuai"
                 }
             },
             errorElement: 'span',
@@ -114,11 +84,11 @@
                 $(element).removeClass('is-invalid');
             },
             submitHandler: function(form) {
-                const href = $('#form-user').data('url');
+                const href = $('#form-tambah-user').data('url');
                 $.ajax({
                     type: 'POST',
                     url: href,
-                    data: $('#form-user').serialize(),
+                    data: $('#form-tambah-user').serialize(),
                     dataType: 'json',
                     success: function(output) {
                         if (output.success) {
@@ -128,7 +98,135 @@
                                 width: 370
                             })
 
-                            $('#modal-user').modal('hide');
+                            $('#modal-tambah-user').modal('hide');
+                            table.ajax.reload();
+
+                        }
+                    }
+                });
+            }
+        });
+
+        //---->||  Set Modal Ubah Data  ||<----//
+        $('#tabel-user').on('click', '.tombolUbahUser', function() {
+
+            $('.input-validation .form-control').removeClass('is-invalid')
+
+            const iduser = $(this).data('id')
+
+            $.ajax({
+                url: urluser + 'editDataUser_json',
+                data: {
+                    id: iduser
+                },
+                method: 'post',
+                dataType: 'json',
+                success: function(data) {
+                    $('#ubah_id').val(data.id_user)
+                    $('#ubah_nama').val(data.nama_lengkap)
+                    $('#ubah_username').val(data.nama_user)
+                }
+            })
+        })
+        //---->||  Ubah Account Validasi  ||<----//
+        $('#form-ubah-user').validate({
+            rules: {
+                ubah_username: 'required'
+            },
+            messages: {
+                ubah_username: "Username harus diisi"
+            },
+            errorElement: 'span',
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.input-validation').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            },
+            submitHandler: function(form) {
+                const href = $('#form-ubah-user').data('url');
+                $.ajax({
+                    type: 'POST',
+                    url: href,
+                    data: $('#form-ubah-user').serialize(),
+                    dataType: 'json',
+                    success: function(output) {
+                        if (output.success) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: output.message,
+                                width: 370
+                            })
+
+                            $('#modal-ubah-user').modal('hide');
+                            table.ajax.reload();
+
+                        }
+                    }
+                }); 8
+            }
+        });
+
+        //---->||  Set Modal Ubah Data  ||<----//
+        $('#tabel-user').on('click', '.tombolUbahUser', function() {
+
+            $('.input-validation .form-control').removeClass('is-invalid')
+
+            const iduser = $(this).data('id')
+
+            $.ajax({
+                url: urluser + 'editDataUser_json',
+                data: {
+                    id: iduser
+                },
+                method: 'post',
+                dataType: 'json',
+                success: function(data) {
+                    $('#ubah_id').val(data.id_user)
+                    $('#ubah_nama').val(data.nama_lengkap)
+                    $('#ubah_username').val(data.nama_user)
+                }
+            })
+        })
+        //---->||  Ubah Account Validasi  ||<----//
+        $('#form-ubah-user').validate({
+            rules: {
+                ubah_username: 'required'
+            },
+            messages: {
+                ubah_username: "Username harus diisi"
+            },
+            errorElement: 'span',
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.input-validation').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            },
+            submitHandler: function(form) {
+                const href = $('#form-ubah-user').data('url');
+                $.ajax({
+                    type: 'POST',
+                    url: href,
+                    data: $('#form-ubah-user').serialize(),
+                    dataType: 'json',
+                    success: function(output) {
+                        if (output.success) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: output.message,
+                                width: 370
+                            })
+
+                            $('#modal-ubah-user').modal('hide');
                             table.ajax.reload();
 
                         }
