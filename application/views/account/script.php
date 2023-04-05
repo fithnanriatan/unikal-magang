@@ -33,7 +33,7 @@
             }]
         });
 
-        
+
         //---->||  Set Model Tambah Data  ||<----//
         $('.tombolTambahUser').on('click', function() {
 
@@ -115,71 +115,7 @@
             const iduser = $(this).data('id')
 
             $.ajax({
-                url: urluser + 'editDataUser_json',
-                data: {
-                    id: iduser
-                },
-                method: 'post',
-                dataType: 'json',
-                success: function(data) {
-                    $('#ubah_id').val(data.id_user)
-                    $('#ubah_nama').val(data.nama_lengkap)
-                    $('#ubah_username').val(data.nama_user)
-                }
-            })
-        })
-        //---->||  Ubah Account Validasi  ||<----//
-        $('#form-ubah-user').validate({
-            rules: {
-                ubah_username: 'required'
-            },
-            messages: {
-                ubah_username: "Username harus diisi"
-            },
-            errorElement: 'span',
-            errorPlacement: function(error, element) {
-                error.addClass('invalid-feedback');
-                element.closest('.input-validation').append(error);
-            },
-            highlight: function(element, errorClass, validClass) {
-                $(element).addClass('is-invalid');
-            },
-            unhighlight: function(element, errorClass, validClass) {
-                $(element).removeClass('is-invalid');
-            },
-            submitHandler: function(form) {
-                const href = $('#form-ubah-user').data('url');
-                $.ajax({
-                    type: 'POST',
-                    url: href,
-                    data: $('#form-ubah-user').serialize(),
-                    dataType: 'json',
-                    success: function(output) {
-                        if (output.success) {
-                            Toast.fire({
-                                icon: 'success',
-                                title: output.message,
-                                width: 370
-                            })
-
-                            $('#modal-ubah-user').modal('hide');
-                            table.ajax.reload();
-
-                        }
-                    }
-                }); 8
-            }
-        });
-
-        //---->||  Set Modal Ubah Data  ||<----//
-        $('#tabel-user').on('click', '.tombolUbahUser', function() {
-
-            $('.input-validation .form-control').removeClass('is-invalid')
-
-            const iduser = $(this).data('id')
-
-            $.ajax({
-                url: urluser + 'editDataUser_json',
+                url: urluser + 'getUserById',
                 data: {
                     id: iduser
                 },
@@ -236,6 +172,94 @@
         });
 
 
+        //---->||  Set Modal Ubah Password  ||<----//
+        $('#tabel-user').on('click', '.tombolGantiPass', function() {
+
+            $('.input-validation .form-control').removeClass('is-invalid')
+
+            const iduser = $(this).data('id')
+
+            $.ajax({
+                url: urluser + 'getUserById',
+                data: {
+                    id: iduser
+                },
+                method: 'post',
+                dataType: 'json',
+                success: function(data) {
+                    $('#id-ganti-pass').val(data.id_user)
+                }
+            })
+        })
+
+        $.validator.addMethod('validPassLama',
+            function(value) {
+                var pass;
+                $.ajax({
+                    type: 'POST',
+                    url: urluser + 'validasiPassLama',
+                    data: $('#form-ganti-password').serialize(),
+                    dataType: 'json',
+                    success: function(output) {
+                        if (output.success == true) {
+                            pass = output.password
+                        } else {
+                            pass = false
+                        }
+                    }
+                });
+                return value == pass;
+            },
+            'Password Lama Salah'
+        )
+        $('#form-ganti-password').validate({
+            rules: {
+                password_lama: {
+                    validPassLama: true,
+                    required: true
+                },
+                ubah_password: 'required',
+                ubah_password2: 'required'
+            },
+            message: {
+                ubah_password: 'kolom Password harus diisi',
+                ubah_password2: 'kolom Konfirm Password harus diisi',
+            },
+            errorElement: 'span',
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.input-validation').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            },
+            submitHandler: function(form) {
+                const href = $('#form-ganti-password').data('url');
+                $.ajax({
+                    type: 'POST',
+                    url: href,
+                    data: $('#form-ganti-password').serialize(),
+                    dataType: 'json',
+                    success: function(output) {
+                        if (output.success) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: output.message,
+                                width: 370
+                            })
+
+                            $('#modal-ganti-pass').modal('hide');
+                            table.ajax.reload();
+
+                        }
+                    }
+                });
+            }
+
+        })
         //---->||  Delete Sintaks  ||<----//
         $('.table').on('click', '.btn-delete', function(e) {
 

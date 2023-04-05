@@ -132,26 +132,26 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" id="form-user" data-url="<?= base_url('account/ubahData'); ?>">
+            <form method="post" id="form-ganti-password" data-url="<?= base_url('account/gantiPassword'); ?>">
                 <input type="hidden" name="id" id="id-ganti-pass">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="password-lama" class="col-form-label">Password Lama:</label>
                         <div class="input-validation">
-                            <input type="password" id="password-lama" name="password-lama" class="form-control">
+                            <input type="password" id="password-lama" name="password_lama" class="form-control">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-6">
                             <label for="ubah-password" class="col-form-label">Password Baru:</label>
                             <div class="input-validation">
-                                <input type="password" id="ubah-password" name="password" class="form-control"></input>
+                                <input type="password" id="ubah-password" name="ubah_password" class="form-control"></input>
                             </div>
                         </div>
                         <div class="col-6">
                             <label for="ubah-password2" class="col-form-label">Konfirm Password:</label>
                             <div class="input-validation">
-                                <input type="password" id="ubah-password2" name="password2" class="form-control"></input>
+                                <input type="password" id="ubah-password2" name="ubah_password2" class="form-control"></input>
                             </div>
                         </div>
                     </div>

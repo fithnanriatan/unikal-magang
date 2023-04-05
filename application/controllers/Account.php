@@ -44,7 +44,7 @@ class Account extends CI_Controller
             $username = '<span class="text-truncate">' . $r['nama_user'] . '</span>';
             $aksi = '<div class="div d-flex">
                         <a class="btn btn-outline-primary btn-sm tombolUbahUser" data-toggle="modal" data-target="#modal-ubah-user" data-id="' . $r['id_user'] . '"><i class="far fa-edit"></i></a>
-                        <a class="btn btn-outline-warning btn-sm mx-1" data-toggle="modal" data-target="#modal-ganti-pass" data-id="' . $r['id_user'] . '"><i class="fas fa-unlock-alt"></i></a>
+                        <a class="btn btn-outline-warning btn-sm mx-1 tombolGantiPass" data-toggle="modal" data-target="#modal-ganti-pass" data-id="' . $r['id_user'] . '"><i class="fas fa-unlock-alt"></i></a>
                         <a href="' . base_url("account/dropDataAccount") . '" class="btn btn-outline-danger btn-sm btn-delete" data-id="' . $r["id_user"] . '"><i class="far fa-trash-alt"></i></a>
                     </div>';
             $row = [++$no, $nama, $username, $aksi];
@@ -59,15 +59,6 @@ class Account extends CI_Controller
         ];
 
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
-    }
-
-    //---- Passing data edit ke JavaScript ----//
-    public function editDataUser_json()
-    {
-        $id = $this->input->post('id');
-        $user = $this->db->get_where('user', ['id_user' => $id])->row_array();
-
-        echo json_encode($user);
     }
 
     public function tambahData()
@@ -106,6 +97,25 @@ class Account extends CI_Controller
         ]);
     }
 
+    public function gantiPassword()
+    {
+        $id = $this->input->post('id');
+
+        $pass = $this->input->post('ubah_password');
+        $hash = password_hash($pass, PASSWORD_BCRYPT);
+
+        $data = [
+            'password' => $hash
+        ];
+
+        $this->db->update('user', $data, ['id_user' => $id]);
+
+        echo json_encode([
+            'success' => true,
+            'message' => 'Password berhasil diubah!'
+        ]);
+    }
+
     public function dropDataAccount()
     {
         $id = $this->input->post('id');
@@ -115,5 +125,33 @@ class Account extends CI_Controller
         echo json_encode([
             'message' => 'Data Account berhasill dihapus'
         ]);
+    }
+
+    //---- Passing data edit ke JavaScript ----//
+    public function getUserById()
+    {
+        $id = $this->input->post('id');
+        $user = $this->db->get_where('user', ['id_user' => $id])->row_array();
+
+        echo json_encode($user);
+    }
+
+    //---->||  Validasi Password  ||<----//
+    public function validasiPassLama()
+    {
+        $id = $this->input->post('id');
+        $user = $this->db->get_where('user', ['id_user' => $id])->row_array();
+        $pass = $this->input->post('password_lama');
+
+        if ( password_verify($pass, $user['password']) ){
+            json_encode([
+                'success' => true,
+                'password' => $pass
+            ]);
+        } else {
+            json_encode([
+                'password' => 'salah gan'
+            ]);
+        }
     }
 }
