@@ -24,7 +24,7 @@
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?= base_url('data/sekolah/getData/'); ?>",
+                "url": "<?= base_url('data/sekolah/getData'); ?>",
                 "type": "POST"
             },
             "columnDefs": [{
@@ -33,22 +33,19 @@
             }]
         });
 
-        //---->||  Set Model Tambah Data  ||<----//
+        //---->||  Set Modal Tambah Data  ||<----//
         $('.tombolTambahSekolah').on('click', function() {
 
             $('#modalLabel').html('Tambah Data Sekolah')
             $('.modal-footer Button[type=submit]').html('Tambahkan')
-            $('.modal-content form').attr('action', urlsekolah + 'addDataSekolah')
-            $('#sekolah_form input[name="jns_form"]').val('add');
+            $('#form-sekolah input[name="jns_form"]').val('tambahData');
 
             $('#id').val(null)
             $('#nama').val(null)
             $('#kota').val(null)
             $('#alamat').val(null)
 
-            $('#nama_error').html('')
-            $('#kota_error').html('')
-            $('#alamat_error').html('')
+            $('.input-validation .form-control').removeClass('is-invalid')
         })
 
         //---->||  Set Modal Ubah Data  ||<----//
@@ -56,12 +53,7 @@
 
             $('#modalLabel').html('Ubah Data Sekolah')
             $('.modal-footer Button[type=submit]').html('Ubah Data')
-            $('.modal-content form').attr('action', urlsekolah + 'editDataSekolah');
-            $('#sekolah_form input[name="jns_form"]').val('edit');
-
-            $('#nama_error').html('')
-            $('#kota_error').html('')
-            $('#alamat_error').html('')
+            $('#form-sekolah input[name="jns_form"]').val('ubahData');
 
             const idsekolah = $(this).data('id')
 
@@ -81,8 +73,57 @@
             })
         })
 
+        //---->||  Validasi Tabel Sekolah Action  ||<----//
+        $('#form-sekolah').validate({
+            rules: {
+                nama: 'required',
+                kota: 'required',
+                alamat: 'required'
+            },
+            messages: {
+                nama: "Nama Sekolah harus diisi",
+                kota: "Asal Kota harus diisi",
+                alamat: "Alamat harus diisi"
+            },
+            errorElement: 'span',
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.input-validation').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            },
+            submitHandler: function(form) {
+                const href = $('#form-sekolah').data('url');
+                const jenis = $('#form-sekolah #jenis-form').val();
+                const link = href + jenis;
+                $.ajax({
+                    type: 'POST',
+                    url: link,
+                    data: $('#form-sekolah').serialize(),
+                    dataType: 'json',
+                    success: function(output) {
+                        if (output.success) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: output.message,
+                                width: 370
+                            })
+
+                            $('#modal-sekolah').modal('hide');
+                            table.ajax.reload();
+                        }
+                        
+                    }
+                });
+            }
+        });
+
         //---->||  Delete Sintaks  ||<----//
-        $('.table').on('click', '.btn-delete', function(e) {
+        $('#tabel-sekolah').on('click', '.btn-delete', function(e) {
 
             e.preventDefault()
             const href = $(this).attr('href')
@@ -102,9 +143,7 @@
 
                     $.ajax({
                         url: href,
-                        data: {
-                            id: id
-                        },
+                        data: {id: id},
                         method: 'POST',
                         dataType: 'json',
                         success: function(data) {
@@ -133,55 +172,6 @@
 
                         }
                     })
-
-                }
-            })
-
-        })
-
-        //---->||  Output Action (insert & update) Data Sekolah  ||<----//
-        $('#sekolah_form').on('submit', function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "<?= base_url('data/sekolah/validation'); ?>",
-                method: "POST",
-                data: $(this).serialize(),
-                dataType: "json",
-                beforeSend: function() {
-                    $('#aksi').attr('disabled', 'disabled')
-                },
-                success: function(data) {
-                    if (data.error) {
-                        if (data.nama_erorr != '') {
-                            $('#nama_error').html(data.nama_error)
-                        } else {
-                            $('#nama_error').html('')
-                        }
-                        if (data.kota_erorr != '') {
-                            $('#kota_error').html(data.kota_error)
-                        } else {
-                            $('#kota_error').html('')
-                        }
-                        if (data.alamat_erorr != '') {
-                            $('#alamat_error').html(data.alamat_error)
-                        } else {
-                            $('#alamat_error').html('')
-                        }
-                    }
-                    if (data.success) {
-
-                        Toast.fire({
-                            icon: 'success',
-                            title: data.message,
-                            width: 390
-                        })
-
-                        $('#modal-sekolah').modal('hide');
-                        table.ajax.reload();
-
-                    }
-
-                    $('#aksi').attr('disabled', false)
 
                 }
             })

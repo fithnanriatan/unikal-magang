@@ -33,24 +33,27 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" id="sekolah_form" action="addDataSekolah">
+            <form method="post" id="form-sekolah" data-url="<?= base_url('data/sekolah/'); ?>">
                 <input type="hidden" name="id" id="id">
-                <input type="hidden" name="jns_form">
+                <input type="hidden" name="jns_form" id="jenis-form">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nama" class="col-form-label">Nama Sekolah:</label>
-                        <input type="text" id="nama" name="nama" class="form-control">
-                        <small id="nama_error" class="text-danger"></small>
+                        <div class="input-validation">
+                            <input type="text" id="nama" name="nama" class="form-control">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="kota" class="col-form-label">Kota Asal:</label>
-                        <input type="text" id="kota" name="kota" class="form-control">
-                        <small id="kota_error" class="text-danger"></small>
+                        <div class="input-validation">
+                            <input type="text" id="kota" name="kota" class="form-control">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="alamat" class="col-form-label">Alamat:</label>
-                        <textarea type="text" id="alamat" name="alamat" class="form-control" rows="3"></textarea>
-                        <small id="alamat_error" class="text-danger"></small>
+                        <div class="input-validation">
+                            <textarea type="text" id="alamat" name="alamat" class="form-control" rows="3"></textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

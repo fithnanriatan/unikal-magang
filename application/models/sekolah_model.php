@@ -68,6 +68,12 @@ class Sekolah_model extends CI_Model
         return $query;
     }
 
+    public function get_siswa($id)
+    {
+        $query = $this->db->get_where('siswa', ['id_sekolah' => $id])->row_array();
+        return $query;
+    }
+
     public function insert($input)
     {
         $this->db->insert('sekolah', $input);
