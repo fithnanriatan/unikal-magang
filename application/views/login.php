@@ -27,8 +27,6 @@
 
     <div class="container" style="min-height: 100vh;">
 
-        <div class="flash-data" data-flashauth="<?= $this->session->flashdata('auth'); ?>"></div>
-
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
@@ -46,9 +44,6 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-
-                                    <?= $this->session->flashdata('validasi-login'); ?>
-
                                     <form method="post" action="" class="user">
                                         <div class="form-group">
                                             <input name="username" type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Username" value="<?= set_value('username'); ?>">
@@ -57,6 +52,7 @@
                                         <div class="form-group">
                                             <input name="password" type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
                                             <?= form_error('password', '<small class="form-text text-danger pl-3">', '</small>'); ?>
+                                            <small class="form-text text-danger pl-3"><?= $this->session->flashdata('invalid'); ?></small>
                                         </div>
                                         <hr>
                                         <button name="submit" type="submit" class="btn btn-outline-warning btn-user btn-block font-weight-bold">

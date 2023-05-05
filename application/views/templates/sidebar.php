@@ -60,7 +60,7 @@
         </li>
 
         <!-- Nav Item - Utilities Collapse Menu -->
-        <li id="nav-item-siswa" class="nav-item <?php if ($this->uri->segment(2) == 'siswa') {
+        <li class="nav-item <?php if ($this->uri->segment(2) == 'siswa') {
                                                     echo "active";
                                                 } ?>">
             <a id="btn-siswa" class="nav-link" href="<?= base_url('data/siswa'); ?>">
@@ -76,10 +76,10 @@
             account
         </div>
 
-        <li class="nav-item">
-            <a class="nav-link <?php if ($this->uri->segment(1) == 'account') {
+        <li class="nav-item <?php if ($this->uri->segment(1) == 'account') {
                                     echo "active";
-                                } ?>" href="<?= base_url('account'); ?>">
+                                } ?>">
+            <a class="nav-link" href="<?= base_url('account'); ?>">
                 <i class="fas fa-fw fa-user"></i>
                 <span>My Profile</span></a>
         </li>

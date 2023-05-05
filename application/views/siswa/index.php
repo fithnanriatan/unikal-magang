@@ -3,18 +3,18 @@
 		<div class="col">
 			<div class="d-flex justify-content-between mb-3">
 				<div>
-					<a href="<?= base_url('data/siswa/tambahdata'); ?>" class="btn btn-primary btn-sm">
+					<a href="<?= base_url('data/siswa/tambahdata'); ?>" class="btn btn-primary btn-sm shadow">
 						+ Tambah Siswa</a>
 				</div>
 				<form action="<?= base_url('data/siswa/laporan_pdf'); ?>" target="_blank" method="post">
 					<div>
-						<button type="submit" class="btn btn-warning btn-sm">
+						<button type="submit" class="btn btn-warning btn-sm shadow">
 							# Cetak Data</button>
 					</div>
 			</div>
 		</div>
 	</div>
-	<div class="card shadow mb-2">
+	<div class="card mb-2">
 		<div class="card-header py-3">
 			<div class="d-flex justify-content-between">
 				<h6 class="m-0 font-weight-bold text-primary">Filter Tabel Siswa</h6>
@@ -25,13 +25,13 @@
 			<div class="row mb-2">
 				<div class="col-md-4">
 					<label for="bln_awal">
-						Bulan Awal
+						Jangka Bulan Awal
 					</label>
 					<input name="bln_awal" id="bln_awal" type="month" class="form-control bg-white">
 				</div>
 				<div class="col-md-4">
 					<label for="bln_akhir">
-						Bulan Akhir
+						Jangka Bulan Akhir
 					</label>
 					<input name="bln_akhir" id="bln_akhir" type="month" class="form-control bg-white">
 				</div>
@@ -96,7 +96,7 @@
 	</form>
 	<div class="row">
 		<div class="col">
-			<div class="card shadow table-responsive p-3">
+			<div class="card table-responsive p-3">
 				<table class="table table-hover" id="tabel-siswa">
 					<thead class="thead-light">
 						<tr>

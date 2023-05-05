@@ -19,7 +19,7 @@
 
         var table;
 
-        table = $('#tabel-pemUnikal').DataTable({
+        table = $('#tabel-pembimbing-unikal').DataTable({
             "processing": true,
             "serverSide": true,
             "order": [],
@@ -33,14 +33,12 @@
             }, ],
         });
 
-
         //---->||  Set Model Tambah Data  ||<----//
-        $('.btnAddData').on('click', function() {
+        $('#tombol-tambah').on('click', function() {
 
             $('#modalLabel').html('Tambah Data Pembimbing Unikal')
             $('.modal-footer Button[type=submit]').html('Tambahkan')
-            // $('.modal-content form').attr('action', urlpemuk + 'TambahData')
-            // $('#sekolah_form input[name="jns_form"]').val('add');
+            $('#form-pembimbing-unikal input[name="jenis-form"]').val('tambahData');
 
             $('#id').val(null)
             $('#nama').val(null)
@@ -48,33 +46,60 @@
             $('#email').val(null)
             $('#alamat').val(null)
 
-            $('#nama_error').html('')
-            $('#telp_error').html('')
-            $('#email_error').html('')
-            $('#alamat_error').html('')
+            $('.input-validation .form-control').removeClass('is-invalid')
         })
 
+        //---->||  Set Model Ubah Data  ||<----//
+        $('#tabel-pembimbing-unikal').on('click', '#tombol-ubah', function() {
+ 
+            $('#modalLabel').html('Ubah Data Pembimbing Unikal')
+            $('.modal-footer Button[type=submit]').html('Ubah Data')
+            $('#form-pembimbing-unikal input[name="jenis-form"]').val('ubahData');
+
+            const idpemuk = $(this).data('id');
+
+            $.ajax({
+                url: urlpemuk + 'editDataPemuk_json',
+                data: {
+                    id: idpemuk
+                },
+                method: 'post',
+                dataType: 'json',
+                success: function(data) {
+
+                    $('#id').val(data.id_pembimbing_unikal);
+                    $('#nama').val(data.nama_pembimbing)
+                    $('#telp').val(data.no_telp)
+                    $('#email').val(data.email)
+                    $('#alamat').val(data.alamat)
+                }
+            })
+
+            $('.input-validation .form-control').removeClass('is-invalid')
+        })
+
+        //---->||  Exsekutor Form Pembimbing Unikal Action  ||<----//
         $('#form-pembimbing-unikal').validate({
             rules: {
-                nama: {
-                    required: true
-                },
+                nama: 'required',
+                telp: 'digits',
+                email: 'email',
                 alamat: {
                     minlength: 6
-                },
+                }
             },
             messages: {
-                nama: {
-                    required: "Nama Pembimbing harus diisi"
-                },
+                nama: "Nama Pembimbing harus diisi",
+                telp: "No telepon hanya dapat berisi angka",
+                email: "Masukkan Email yang valid",
                 alamat: {
-                    minlength: "Minimal Alamat 6 karakter"
-                },
+                    minlength: "Minimal Alamat berisi 6 karakter"
+                }
             },
             errorElement: 'span',
             errorPlacement: function(error, element) {
                 error.addClass('invalid-feedback');
-                element.closest('.col-sm-8').append(error);
+                element.closest('.input-validation').append(error);
             },
             highlight: function(element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
@@ -84,9 +109,11 @@
             },
             submitHandler: function(form) {
                 const href = $('#form-pembimbing-unikal').data('url');
+                const jenis = $('#form-pembimbing-unikal #jenis-form').val();
+                const link = href + jenis;
                 $.ajax({
                     type: 'POST',
-                    url: href,
+                    url: link,
                     data: $('#form-pembimbing-unikal').serialize(),
                     dataType: 'json',
                     success: function(output) {

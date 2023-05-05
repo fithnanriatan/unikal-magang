@@ -35,25 +35,24 @@
 
         //---->||  Set Modal Tambah Data  ||<----//
         $('.tombolTambahSekolah').on('click', function() {
+            
+            $('#form-reset').trigger('reset')
+            $('.input-validation .form-control').removeClass('is-invalid')
 
             $('#modalLabel').html('Tambah Data Sekolah')
             $('.modal-footer Button[type=submit]').html('Tambahkan')
             $('#form-sekolah input[name="jns_form"]').val('tambahData');
-
-            $('#id').val(null)
-            $('#nama').val(null)
-            $('#kota').val(null)
-            $('#alamat').val(null)
-
-            $('.input-validation .form-control').removeClass('is-invalid')
         })
-
+        
         //---->||  Set Modal Ubah Data  ||<----//
         $('#tabel-sekolah').on('click', '.tombolUbahSekolah', function() {
+            
+            $('#form-reset').trigger('reset')
+            $('.input-validation .form-control').removeClass('is-invalid')
 
             $('#modalLabel').html('Ubah Data Sekolah')
             $('.modal-footer Button[type=submit]').html('Ubah Data')
-            $('#form-sekolah input[name="jns_form"]').val('ubahData');
+            $('#form-sekolah input[name="jns_form"]').val('ubahData')
 
             const idsekolah = $(this).data('id')
 
@@ -73,7 +72,7 @@
             })
         })
 
-        //---->||  Validasi Tabel Sekolah Action  ||<----//
+        //---->||  Exsekutor Form Sekolah Action  ||<----//
         $('#form-sekolah').validate({
             rules: {
                 nama: 'required',

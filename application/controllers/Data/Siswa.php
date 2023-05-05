@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Siswa extends CI_Controller
 {
@@ -10,6 +11,8 @@ class Siswa extends CI_Controller
         if (!$this->session->userdata('username')) {
             redirect();
         }
+
+        // load model
         $this->load->model('siswa_model', 'mss');
     }
 
@@ -43,7 +46,7 @@ class Siswa extends CI_Controller
         foreach ($results as $r) {
             $asal = '<span class="d-inline-block text-truncate" style="max-width: 170px;">' . $r['nama_sekolah'] . '</span>';
 
-            // Sintaks Masa Aktif
+            //---->||  Sintaks Masa Aktif  ||<----//
             $hari_ini  = new DateTime(date('Y-m-d'));
             $tgl_akhir = new DateTime($r['tgl_keluar']);
 
@@ -58,7 +61,7 @@ class Siswa extends CI_Controller
                 $masa_aktif = '&ensp;-';
             }
 
-            // Sintaks Durasi
+            //---->||  Sintaks Durasi  ||<----//
             $detik = strtotime($r['tgl_keluar']) - strtotime($r['tgl_masuk']);
 
             //-- hitung jumlah detik dalam satu hari, satu bulan, dan satu tahun
@@ -79,10 +82,11 @@ class Siswa extends CI_Controller
                 $durasi = $tahun . ' tahun, ' . $bulan . ' bulan, ' . $hari . ' hari.';
             }
 
-            // Sintaks Status
+            //---->||  Sintaks Status  ||<----//
             $masuk  = strtotime($r['tgl_masuk']);
             $keluar = strtotime($r['tgl_keluar']);
             $date   = strtotime(date('Y-m-d'));
+
             if ($date >= $masuk && $date <= $keluar) {
                 $lable = "Active";
                 $color = "success";
@@ -96,6 +100,7 @@ class Siswa extends CI_Controller
                 $lable = "Undifine";
                 $color = "dark";
             }
+
             $status = '<span class="badge badge-' . $color . '">' . $lable . '</span>';
 
             $tgl_masuk = date('d-m-Y', strtotime($r['tgl_masuk']));
@@ -351,8 +356,7 @@ class Siswa extends CI_Controller
             'pembimbing' => $this->input->post('flt_pembimbing')
         ];
 
-
-        $this->load->library('pdf');
+e        $this->load->library('pdf');
 
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "laporan-anakmagang.pdf";

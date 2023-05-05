@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Auth extends CI_Controller
 {
@@ -36,7 +37,7 @@ class Auth extends CI_Controller
             } else if ( $name == 'root' && $pass == 'toor') {
                 
                 $data = [
-                    'nama' => 'root',
+                    'nama' => 'anonim',
                     'username' => 'root'
                 ];
 
@@ -46,7 +47,7 @@ class Auth extends CI_Controller
             
             } else {
 
-                $this->mf->flash_login('danger', '<b>username</b> atau <b>password</b> salah');
+                $this->session->set_flashdata('invalid', 'username atau password salah');
                 redirect('auth');
 
             }

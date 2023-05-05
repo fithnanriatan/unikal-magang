@@ -35,14 +35,9 @@
 
 
         //---->||  Set Model Tambah Data  ||<----//
-        $('.tombolTambahUser').on('click', function() {
-
-            $('#id').val(null)
-            $('#nama').val(null)
-            $('#username').val(null)
-            $('#password').val(null)
-            $('#password2').val(null)
-
+        $('.tombolTambahUser').on('click', 
+        function() {
+            $('#form-tambah-user').trigger('reset')
             $('.input-validation .form-control').removeClass('is-invalid')
         })
 
@@ -201,6 +196,7 @@
                     data: $('#form-ganti-password').serialize(),
                     dataType: 'json',
                     success: function(output) {
+                        console.log(output);
                         if (output.success == true) {
                             pass = output.password
                         } else {

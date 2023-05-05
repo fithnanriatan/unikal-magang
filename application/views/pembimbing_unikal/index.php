@@ -2,14 +2,14 @@
 <div class="container-fluid">
 	<div class="d-flex justify-content-between">
 		<div>
-			<button type="button" data-toggle="modal" data-target="#modal-pembimbing-unikal" class="btn btn-primary btn-sm mb-3 btnAddData">
+			<button id="tombol-tambah" type="button" data-toggle="modal" data-target="#modal-pembimbing-unikal" class="btn btn-primary btn-sm mb-3">
 				+ Tambah Pembimbing</button>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col">
 			<div class="card table-responsive p-3">
-				<table class="table table-hover" id="tabel-pemUnikal">
+				<table class="table table-hover" id="tabel-pembimbing-unikal">
 					<thead class="thead-light">
 						<tr class="text-truncate">
 							<th scope="col">#</th>
@@ -40,24 +40,33 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form method="post" id="form-pembimbing-unikal" action="javascript:void(0)" data-url="<?= base_url('data/pembimbing_unikal/tambahdata'); ?>">
+			<form method="post" id="form-pembimbing-unikal" action="javascript:void(0)" data-url="<?= base_url('data/pembimbing_unikal/'); ?>">
 				<input type="hidden" name="id" id="id">
+				<input type="hidden" name="jenis-form" id="jenis-form">
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="nama" class="col-form-label">Nama Pembimbing:</label>
-						<input type="text" id="nama" name="nama" class="form-control">
+						<label for="nama" class="col-form-label">Nama Pembimbing: (wajib)</label>
+						<div class="input-validation">
+							<input type="text" id="nama" name="nama" class="form-control">
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="telp" class="col-form-label">No Telephone:</label>
-						<input type="text" id="telp" name="telp" class="form-control">
+						<div class="input-validation">
+							<input type="text" id="telp" name="telp" class="form-control">
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="email" class="col-form-label">E-Mail:</label>
-						<input type="text" id="email" name="email" class="form-control">
+						<div class="input-validation">
+							<input type="text" id="email" name="email" class="form-control">
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="alamat" class="col-form-label">Alamat:</label>
-						<textarea type="text" id="alamat" name="alamat" class="form-control" rows="3"></textarea>
+						<div class="input-validation">
+							<textarea type="text" id="alamat" name="alamat" class="form-control" rows="3"></textarea>
+						</div>
 					</div>
 				</div>
 				<div class="modal-footer">

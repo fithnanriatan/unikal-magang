@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 26 Mar 2023 pada 17.27
+-- Waktu pembuatan: 03 Bulan Mei 2023 pada 03.51
 -- Versi server: 5.7.33
 -- Versi PHP: 7.2.32
 
@@ -45,7 +45,7 @@ CREATE TABLE `pembimbing_sekolah` (
 INSERT INTO `pembimbing_sekolah` (`id_pembimbing_sekolah`, `id_sekolah`, `nama_pembimbing`, `alamat`, `no_telp`, `email`, `created_at`, `updated_at`) VALUES
 (7, 60, 'Arif Setiawan', 'Jl Tulis, Desa Ging Gong, Batang', '024751549478', 'hrefstwn775@gmail.com', '2023-02-17 01:20:29', '2023-02-17 01:28:06'),
 (9, 64, 'Saifudin Aji Negara', 'affafafasfdasdfasfas', '088812341234', 'saifudin_aji@gmail.com', '2023-02-27 21:33:30', '2023-02-27 14:33:30'),
-(10, 65, 'jasmine', '', '097654333', '', '2023-03-16 13:21:17', '2023-03-16 06:21:17');
+(10, 65, 'Cikgu Jasmine', 'jehrwiunfo', '097654333', 'regergwe@ekjf.fd', '2023-03-16 13:21:17', '2023-05-02 14:47:00');
 
 -- --------------------------------------------------------
 
@@ -92,7 +92,7 @@ CREATE TABLE `sekolah` (
 
 INSERT INTO `sekolah` (`id_sekolah`, `nama_sekolah`, `kota`, `alamat`, `created_at`, `updated_at`) VALUES
 (39, 'SMK Muhammadiyah Ulujami', 'Kab. Pemalang', 'Jl. Raya Rowosari, Dusun Empat, Rowosari, Kec. Ulujami, Kabupaten Pemalang, Jawa Tengah 52371', '0000-00-00 00:00:00', '2023-03-15 16:44:53'),
-(60, 'MI Manba\'ul Ulum', 'Kota Pekalongan', 'Jl Sumatra, Gang xx, Kergon, Pekalongan', '2023-02-17 01:13:00', '2023-03-15 16:45:02'),
+(60, 'MI Manba\'ul Ulum', 'Kota Pekalongan', 'Jl Sumatra, Gang 5A, Kergon, Pekalongan', '2023-02-17 01:13:00', '2023-05-03 02:16:24'),
 (64, 'SMK Negeri 1 Punggelan', 'Kab Banjarnegara', 'Jl. Ps. Manis, Kepering, Punggelan, Kec. Punggelan, Kab. Banjarnegara, Jawa Tengah 53462', '2023-02-27 21:26:03', '2023-03-15 16:43:50'),
 (65, 'Tadika Mesra', 'Kuala Lumpur', 'Jl, xx alfkjalkfjaf asfj asfkjk', '2023-03-15 23:42:41', '2023-03-15 16:42:41');
 
@@ -127,7 +127,7 @@ CREATE TABLE `siswa` (
 
 INSERT INTO `siswa` (`id_siswa`, `nama_siswa`, `nisn`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `no_telp`, `email`, `foto`, `tgl_masuk`, `tgl_keluar`, `id_sekolah`, `id_pembimbing_sekolah`, `id_pembimbing_unikal`, `created_at`, `updated_at`) VALUES
 (9, 'M. Iyan Tsabit Saputra', '77339901', 'Bendan', '2005-06-04', 'Jl xx xx, Gang xx, Xx, Pekalongan,  Jawa Tengah', '081234459543', 'mimu@gmail.com', 'ab768560898219a4833160284ba3cbc5.jpg', '2023-02-01', '2023-06-20', 60, 7, 6, '0000-00-00 00:00:00', '2023-03-15 14:04:17'),
-(11, 'Tsakilatu Syifa\'', '77339902', 'Pekalongan', '2005-06-19', 'Jl. Sulawesi, Gang 5A, Kergon, Pekalongan', '081438923543', 'mimu@gmail.com', '19c42dd8ded86dfae0cc19188d8f2c1d.jpg', '2023-03-14', '2023-03-31', 60, 7, 6, '0000-00-00 00:00:00', '2023-03-17 16:18:04'),
+(11, 'Tsakilatu Syifa\'', '77339902', 'Pekalongan', '2005-06-19', 'Jl. Sulawesi, Gang 5A, Kergon, Pekalongan', '081438923543', 'mimu@gmail.com', '19c42dd8ded86dfae0cc19188d8f2c1d.jpg', '2023-03-14', '2023-05-03', 60, 7, 6, '0000-00-00 00:00:00', '2023-05-02 14:57:17'),
 (21, 'Krelis Agustina', '73913384', 'Pekalongan', '2006-08-07', 'Jl. Sulawesi, Gang xx, Bendan, Pekalongan', '088778523543', 'krelis@gmail.com', '2827fd1cf146501049b7c58098962748.jpg', '2023-11-15', '2024-03-28', 60, 7, 6, '0000-00-00 00:00:00', '2023-03-13 13:18:34'),
 (24, 'Sawa Hajita N', '00477239006', 'Banjarnegara', '2004-02-07', 'Kecepit RT 04 RW 02, Punggelan, Banjarnegara', '085602425506', 'sawahajitanailah@gmail.com', '828314e9554f31a8b6aa90e5fec97d14.jpg', '2022-07-05', '2023-02-28', 64, 9, 7, '0000-00-00 00:00:00', '2023-02-27 14:38:17'),
 (25, 'Riska Fitriyani Wulandari', '0037826139', 'Banjarnegara', '2003-11-17', 'Purbalingga, Pengadegan, Temanggal RT 03/ RW 02', '0882008953222', 'wulanriska851@gmail.com', '86eaa1a46d59ca6039f04cbc5a70441a.jpg', '2022-07-05', '2023-02-28', 64, 9, 7, '0000-00-00 00:00:00', '2023-02-27 14:40:45'),
@@ -154,7 +154,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nama_lengkap`, `nama_user`, `password`, `created_at`, `updated_at`) VALUES
-(10, 'Admin Utama', 'admin', '$2y$10$rgXkWJn92yHIB9IGpyB9N.DCMdfwzzyU0DegcMafPvZ6vEMDKt02y', '0000-00-00 00:00:00', '2023-03-26 17:04:17');
+(10, 'Admin Utama', 'admin', '$2y$10$rgXkWJn92yHIB9IGpyB9N.DCMdfwzzyU0DegcMafPvZ6vEMDKt02y', '0000-00-00 00:00:00', '2023-03-26 17:04:17'),
+(11, 'Lab. Puskom', 'puskom', '$2y$10$DtSE8VaTZnWqhce7o6vvF.DwNHDgCOrBd6u5fcyYXsCgPjUV71ZdO', '0000-00-00 00:00:00', '2023-03-28 01:23:26'),
+(12, 'BAAK', 'baak', '$2y$10$8qFfBixdxJmGnImQQDvwVegxgBkG0SFKgby9FSMr26rVroJXaJOze', '0000-00-00 00:00:00', '2023-03-28 01:23:49'),
+(13, 'Alpha Alhaitam', 'alpha', '$2y$10$n.MOw2vuOw40ADMX7xPbROFhF1DWeEuC4u7zbcuHkiKHH.icwl3RS', '0000-00-00 00:00:00', '2023-03-28 02:42:01'),
+(14, 'Beta Basudara', 'beta', '$2y$10$Fi3852JMoHEWfKDNTckdluwyTIhcypRj8WFg2PjkDq4FRdPJZoDKa', '0000-00-00 00:00:00', '2023-03-28 07:50:51'),
+(15, 'Cupcake Capybara', 'cupcake', '$2y$10$IKL3tnhDUTLUdg9xKcKosuguVs1ZDyFJSrIvSQuGtw4y..vox./1.', '0000-00-00 00:00:00', '2023-03-28 07:20:04'),
+(16, 'Bismillah hirrahman nirrahimm', 'bismillah', '$2y$10$ZhjKExEXQpE0ZN9fP4W5numQO7FJTRKCg7AhNbBEWzU2/dxe4/Npq', '0000-00-00 00:00:00', '2023-03-29 02:45:50');
 
 --
 -- Indexes for dumped tables
@@ -214,7 +220,7 @@ ALTER TABLE `pembimbing_unikal`
 -- AUTO_INCREMENT untuk tabel `sekolah`
 --
 ALTER TABLE `sekolah`
-  MODIFY `id_sekolah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id_sekolah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswa`
@@ -226,7 +232,7 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

@@ -1,7 +1,7 @@
 <?php
-    class User_model extends CI_Model
-    {
-        //*--- Start of Table Serverside ---*//
+class User_model extends CI_Model
+{
+    //*--- Start of Table Serverside ---*//
     var $table = "user";
     var $order = ['id_user', 'nama_lengkap', 'nama_user'];
 
@@ -45,6 +45,27 @@
         $this->db->from($this->table);
         return $this->db->count_all_results();
     }
-    //*--- End of Table Serverside ---*//
+    //*--- End of Table Serverside ---*//'
 
+    public function get_where($id)
+    {
+        $this->db->where('id_user', $id);
+        $query = $this->db->get('user');
+        return $query->row_array();
     }
+
+    public function insert($value)
+    {
+        $this->db->insert('user', $value);
+    }
+
+    public function update($id, $data)
+    {
+        $this->db->update('user', $data, ['id_user' => $id]);
+    }
+
+    public function delete($id)
+    {
+        $this->db->delete('user', ['id_user' => $id]);
+    }
+}

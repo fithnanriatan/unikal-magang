@@ -1,4 +1,6 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
 class Account extends CI_Controller
 {
     public function __construct()
@@ -7,17 +9,9 @@ class Account extends CI_Controller
         if (!$this->session->userdata('username')) {
             redirect();
         }
+        
+        // load model
         $this->load->model('user_model', 'mu');
-    }
-
-    private function _index($data, $body)
-    {
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('account/' . $body, $data);
-        $this->load->view('templates/footer', $data);
-        $this->load->view('account/script', $data);
     }
 
     public function index()
@@ -30,7 +24,12 @@ class Account extends CI_Controller
             'user'  => $this->db->get_where('user', ['nama_user' => $user])->row_array()
         ];
 
-        $this->_index($data, 'index');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('account/index', $data);
+        $this->load->view('templates/footer', $data);
+        $this->load->view('account/script', $data);
     }
 
     public function getData()
@@ -72,7 +71,7 @@ class Account extends CI_Controller
             'password'      => $hash
         ];
 
-        $this->db->insert('user', $data);
+        $this->mu->insert($data);
         
         echo json_encode([
             'success' => true,
@@ -89,7 +88,7 @@ class Account extends CI_Controller
             'nama_user'     => $this->input->post('ubah_username')
         ];
 
-        $this->db->update('user', $data, ['id_user' => $id]);
+        $this->mu->update($id, $data);
 
         echo json_encode([
             'success' => true,
@@ -108,7 +107,7 @@ class Account extends CI_Controller
             'password' => $hash
         ];
 
-        $this->db->update('user', $data, ['id_user' => $id]);
+        $this->mu->update($id, $data);
 
         echo json_encode([
             'success' => true,
@@ -120,7 +119,7 @@ class Account extends CI_Controller
     {
         $id = $this->input->post('id');
 
-        $this->db->delete('user', ['id_user' => $id]);
+        $this->mu->delete($id);
 
         echo json_encode([
             'message' => 'Data Account berhasill dihapus'
@@ -131,7 +130,7 @@ class Account extends CI_Controller
     public function getUserById()
     {
         $id = $this->input->post('id');
-        $user = $this->db->get_where('user', ['id_user' => $id])->row_array();
+        $user = $this->mu->get_where($id);
 
         echo json_encode($user);
     }
@@ -140,7 +139,7 @@ class Account extends CI_Controller
     public function validasiPassLama()
     {
         $id = $this->input->post('id');
-        $user = $this->db->get_where('user', ['id_user' => $id])->row_array();
+        $user = $this->mu->get_where($id);
         $pass = $this->input->post('password_lama');
 
         if ( password_verify($pass, $user['password']) ){

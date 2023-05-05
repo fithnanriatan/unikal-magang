@@ -1,37 +1,32 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pembimbing_unikal extends CI_Controller
 {
-    var $title = "Pembimbing Unikal";
-
     public function __construct()
     {
         parent::__construct();
         if (!$this->session->userdata('username')) {
             redirect();
         }
-        $this->load->model('pembimbingSekolah_model', 'mps');
+
+        // load model
         $this->load->model('pembimbingUnikal_model', 'mpu');
     }
-
-    private function _index($data, $body)
-    {
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('pembimbing_unikal/' . $body, $data);
-        $this->load->view('templates/footer', $data);
-        $this->load->view('pembimbing_unikal/script', $data);
-    }
-
+        
     public function index()
     {
         $data = [
-            "title"     => $this->title,
+            "title"     => "Pembimbing Unikal",
             "punikal"   => $this->mpu->getAll()
         ];
 
-        $this->_index($data, 'index');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('pembimbing_unikal/index', $data);
+        $this->load->view('templates/footer', $data);
+        $this->load->view('pembimbing_unikal/script', $data);
     }
 
     public function getData()
@@ -44,7 +39,7 @@ class Pembimbing_unikal extends CI_Controller
             $alamat = '<span class="d-inline-block text-truncate" style="max-width: 170px;">' . $r['alamat'] . '</span>';
             $email = '<span class="d-inline-block text-truncate" style="max-width: 150px;">' . $r['email'] . '</span>';
             $aksi = '<div class="div d-flex">
-                            <a href="' . base_url("data/pembimbing_unikal/ubahdata/" . $r["id_pembimbing_unikal"]) . '" class="btn btn-outline-primary btn-sm"><i class="far fa-edit"></i></a>
+                            <a id="tombol-ubah" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#modal-pembimbing-unikal" data-id="' . $r["id_pembimbing_unikal"] . '"><i class="far fa-edit"></i></a>
                             <a href="' . base_url("data/pembimbing_unikal/hapusdata/") . '" data-id="' . $r["id_pembimbing_unikal"] . '" class="btn btn-outline-danger btn-sm ml-1 btn-delete"><i class="far fa-trash-alt"></i></a>
                     </div>';
 
@@ -62,16 +57,14 @@ class Pembimbing_unikal extends CI_Controller
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
 
-    public function TambahData()
+    public function tambahData()
     {
-        $date = date('Y-m-d H:i:s');
-
         $input = [
             "nama_pembimbing"   => $this->input->post('nama'),
             "alamat"            => $this->input->post('alamat'),
             "no_telp"           => $this->input->post('telp'),
             "email"             => $this->input->post('email'),
-            "created_at"        => $date
+            "created_at"        => date('Y-m-d H:i:s')
         ];
 
         $this->mpu->insert($input);
@@ -82,30 +75,23 @@ class Pembimbing_unikal extends CI_Controller
         ]);
     }
 
-    public function ubahData($id)
+    public function ubahData()
     {
-        $data = [
-            "title"         => $this->title,
-            "label"         => "Ubah Data Pembimbing Unikal",
-            "pembimbing"    => $this->mpu->get_where($id)
-        ];
-
+        $id = $this->input->post('id');
+        
         $input = [
             "nama_pembimbing"   => $this->input->post('nama'),
             "alamat"            => $this->input->post('alamat'),
             "no_telp"           => $this->input->post('telp'),
-            "email"             => $this->input->post('email'),
+            "email"             => $this->input->post('email')
         ];
 
-        $this->_formRules();
+        $this->mpu->update($input, $id);
 
-        if ($this->form_validation->run() == true) {
-            $this->mpu->update($input, $id);
-            $this->session->set_flashdata('main', 'data Pembimbing Unikal berhasil diubah');
-            redirect('data/pembimbing_unikal');
-        } else {
-            $this->_index($data, 'ubah_data');
-        }
+        echo json_encode([
+            "success" => true,
+            "message" => "data Pembimbing Unikal berhasil diubah"
+        ]);
     }
 
     public function hapusData()
@@ -114,11 +100,14 @@ class Pembimbing_unikal extends CI_Controller
         $siswa = $this->db->get_where('siswa', ['id_pembimbing_unikal' => $id])->row_array();
 
         if (!empty($siswa)) {
+
             echo json_encode([
                 "status" => "error",
                 "message" => "Data pembimbing tersebut sedang digunakan sebagai parent dari tabel Siswa"
             ]);
+
         } else {
+
             $this->mpu->delete($id);
 
             echo json_encode([
@@ -128,17 +117,10 @@ class Pembimbing_unikal extends CI_Controller
         }
     }
 
-    private function _formRules()
+    // passing data ke javascript
+    public function editDataPemuk_json()
     {
-        $message = [
-            "required"      => "Kolom {field} harus diisi",
-            "numeric"       => "Kolom {field} hanya dapat berisi angka",
-            "valid_email"   => "Masukkan alamat {field} yang valid"
-        ];
-
-        $this->form_validation->set_rules('nama',   'Nama',         'trim|required',            $message);
-        $this->form_validation->set_rules('telp',   'No Telephone', 'trim|numeric',    $message);
-        $this->form_validation->set_rules('email',  'E-Mail',       'trim|valid_email', $message);
-        $this->form_validation->set_rules('alamat', 'Alamat',       'trim',            $message);
+        $id = $this->input->post('id');
+        echo json_encode($this->mpu->get_where($id));
     }
 }

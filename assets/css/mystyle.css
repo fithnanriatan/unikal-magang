@@ -4,6 +4,7 @@
 }
 .invalid-feedback
 {
+    width: max-content !important;
     left: 3px;
     color: #e74a3b !important;
     font-size: 0.7rem;
