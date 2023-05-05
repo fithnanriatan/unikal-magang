@@ -356,7 +356,7 @@ class Siswa extends CI_Controller
             'pembimbing' => $this->input->post('flt_pembimbing')
         ];
 
-e        $this->load->library('pdf');
+        $this->load->library('pdf');
 
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "laporan-anakmagang.pdf";
